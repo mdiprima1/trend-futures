@@ -1,0 +1,6 @@
+databento>=0.40.0
+vectorbt>=0.26.0
+pandas>=2.0
+numpy>=1.24
+python-dotenv>=1.0
+pyarrow>=14.0

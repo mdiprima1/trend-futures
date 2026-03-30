@@ -1,0 +1,6 @@
+sharpe,cagr_pct,max_dd_pct,calmar,realized_vol_pct,total_return_pct,final_equity,skew,kurtosis,n_years,allocation,vol_method,vol_window,vol_target,rebalance_freq,signal_id,signal_name
+1.034,3.4,4.27,0.795,3.69,22.46,612285.0,-0.153,1.793,6.1,equal_weight,atr,20,0.08,daily,TS-04,TSMOM(252d)
+1.028,3.65,3.57,1.024,4.05,27.2,636000.0,-0.22,2.361,6.7,equal_weight,atr,20,0.08,daily,MA-04,EMA(10/100)
+0.876,3.12,4.04,0.772,3.94,21.04,605201.0,-0.219,2.07,6.2,equal_weight,atr,20,0.08,daily,MA-03,SMA(50/200)
+0.964,3.36,3.46,0.972,3.94,24.83,624144.0,-0.095,2.565,6.7,equal_weight,atr,20,0.08,daily,MA-02,EMA(20/50)
+0.921,2.96,4.74,0.624,3.85,21.58,607923.0,0.028,1.937,6.7,equal_weight,atr,20,0.08,daily,SE-02,Price>EMA(50)

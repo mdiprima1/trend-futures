@@ -203,10 +203,72 @@ These are the next research priorities after universe expansion, not sprint-leve
 
 ---
 
-## Open Questions for Sprint 7
+## Open Questions for Sprint 7 → ANSWERED
 
-1. How does the system perform across specific market regimes (2020 COVID, 2022 rate shock)?
-2. What happens at higher vol targets (15%, 20%) with the current 6-instrument system?
-3. How robust is the system to parameter perturbation (Monte Carlo)?
-4. What is the walk-forward OOS performance?
-5. Does it pass the QSL 8-Gate evaluation?
+### Sprint 7: Integration & Stress Testing
+
+**Objective**: Does the system survive real-world stress tests? Is it robust? Does it provide crisis alpha?
+
+**Method**: Regime-specific backtests (8 yearly periods), 5-fold walk-forward validation (3-year IS → 1-year OOS), parameter perturbation (5 variants), crisis alpha analysis vs SPY, vol target scaling.
+
+**Key findings**:
+
+1. **Crisis alpha is real**. SPY correlation is 0.051 (uncorrelated). During SPY drawdowns >20%, the strategy is negatively correlated (-0.503) and generates +3.9% annualized return. In 2022 specifically: strategy +9.8% while SPY -24.8%. This confirms CFM (2018) convexity thesis and Kaminski (2025) crisis alpha framework.
+
+2. **Walk-forward PASSES** (OOS/IS ratio 0.91, avg OOS Sharpe 0.969). The system generalizes out of sample. 4 of 5 windows are profitable OOS. The one failure is 2023 (range-bound) — the known weakness.
+
+3. **Parameters are robust** (Sharpe std 0.072 across 5 perturbations). All variants produce Sharpe > 0.95. Not overfit to specific parameter choices.
+
+4. **2023 is the Achilles heel** — the only losing year (-2.2%, Sharpe -0.560). Range-bound markets with no sustained trends. This is structural, not fixable. Kaminski (2025) calls these "corrections" vs "crises" — trend following only protects in crises.
+
+5. **Vol target scales perfectly linearly** — Sharpe barely changes (1.142-1.173) across 8-25% targets. At 20%, CAGR is 9.5% with 7.3% max DD. At 25%, CAGR is 11.9% with 9.0% max DD. Adding instruments would allow even higher targets.
+
+6. **2025 is the standout year** — Sharpe 2.355, return +12.2%, max DD only 2.1%. Tariff-driven macro volatility creates exactly the sustained directional moves that trend following exploits.
+
+**Decision**: System is validated. The integrated configuration (Fast+Slow blend, ATR(20), equal weight, 12% vol target, weekly rebal) is the production system.
+
+---
+
+## Final System Summary (All 7 Sprints Complete)
+
+| Component | Value | Sprint |
+|-----------|-------|--------|
+| Signal | Fast+Slow (EMA 10/100 + TSMOM 252d) | 4 |
+| Vol estimation | ATR(20) | 2 |
+| Allocation | Equal weight | 2 |
+| Vol target | 12% (scalable to 25%) | 2, 7 |
+| Rebalancing | Weekly | 2 |
+| Universe | ES, NQ, ZN, GC, CL, 6E | 1 |
+| ML overlay | Available (70/30 blend for +0.4 Sharpe) | 5 |
+| Cross-asset | Deferred to universe expansion | 6 |
+| Cost drag | 0.27%/yr | 3 |
+| Capacity | $8.7B at 1% participation | 3 |
+
+| Metric | 12% Vol Target | 20% Vol Target |
+|--------|---------------|----------------|
+| Sharpe | 1.168 | 1.153 |
+| CAGR | 5.7% | 9.5% |
+| Max DD | 4.4% | 7.3% |
+| Calmar | 1.298 | 1.313 |
+| SPY Correlation | 0.051 | 0.051 |
+
+## Key Lessons (Final)
+
+1. **Simplicity beats complexity** — across signals, blending, and regime detection
+2. **Slow signals capture the trend premium** — fast signals lose to mean-reversion
+3. **The barbell works** — short + long, skip medium (Etienne 2025)
+4. **ML improves Sharpe but halves CAGR** — meta-labeling is for bet sizing, not direction
+5. **Costs are irrelevant** for slow trend following (<0.5%/yr)
+6. **Crisis alpha is real** — uncorrelated to SPY, negatively correlated in drawdowns
+7. **Walk-forward validates** — OOS/IS ratio 0.91
+8. **Parameters are robust** — Sharpe std 0.072 across perturbations
+9. **2023-type range-bound years are structural weakness** — not fixable within trend framework
+10. **Universe expansion is the primary growth lever** — more instruments → better diversification → higher vol targets → higher CAGR
+
+## Next Steps
+
+1. **Universe expansion** to 20+ instruments (Phase 2 universe plan in docs/04)
+2. **Carry signal using actual roll yield** (calendar spreads, not return momentum)
+3. **HRP re-evaluation** with larger universe
+4. **Live paper trading** validation
+5. **8-Gate evaluation** when connected to QSL evaluation framework

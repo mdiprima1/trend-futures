@@ -1,0 +1,10 @@
+regime,sharpe,cagr_pct,max_dd_pct,calmar,realized_vol_pct,total_return_pct,final_equity,skew,kurtosis,n_years,allocation,vol_method,vol_window,vol_target,rebalance_freq
+Full Period,1.168,5.7,4.39,1.298,5.84,45.01,725050.0,-0.313,2.408,6.7,equal_weight,atr,20,0.12,weekly
+2018 Vol Shock,0.521,2.84,3.3,0.861,5.82,1.84,509199.0,-0.601,2.083,0.7,equal_weight,atr,20,0.12,weekly
+2019 Low Vol,1.543,7.36,2.87,2.567,4.83,5.14,525724.0,0.096,1.033,0.7,equal_weight,atr,20,0.12,weekly
+2020 COVID,1.385,9.15,4.05,2.263,6.65,7.35,536744.0,-0.345,2.759,0.8,equal_weight,atr,20,0.12,weekly
+2021 Recovery,0.502,2.5,2.53,0.987,5.19,2.02,510084.0,-0.273,2.358,0.8,equal_weight,atr,20,0.12,weekly
+2022 Rate Shock,1.391,9.29,3.16,2.937,6.66,6.96,534815.0,-0.54,4.135,0.8,equal_weight,atr,20,0.12,weekly
+2023 Range-Bound,-0.56,-2.91,5.33,-0.545,4.98,-2.19,489060.0,-0.325,1.66,0.8,equal_weight,atr,20,0.12,weekly
+2024 Election,1.157,6.24,2.64,2.365,5.45,4.75,523739.0,-0.266,1.659,0.8,equal_weight,atr,20,0.12,weekly
+2025 Tariffs,2.355,14.6,2.09,6.986,6.17,12.15,560730.0,0.095,1.121,0.8,equal_weight,atr,20,0.12,weekly

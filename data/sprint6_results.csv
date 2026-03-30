@@ -1,0 +1,6 @@
+name,sharpe,cagr_pct,max_dd_pct,calmar,realized_vol_pct,total_return_pct,final_equity,skew,kurtosis,n_years,allocation,vol_method,vol_window,vol_target,rebalance_freq
+Trend+XSmom (70/30),1.168,5.7,4.39,1.298,5.84,45.01,725050.0,-0.313,2.408,6.7,equal_weight,atr,20,0.12,weekly
+Full Multi-Factor,1.082,5.72,5.74,0.996,6.36,45.21,726025.0,-0.326,2.605,6.7,equal_weight,atr,20,0.12,weekly
+Trend-Heavy Multi,1.011,5.35,6.26,0.854,6.3,41.77,708835.0,-0.312,2.493,6.7,equal_weight,atr,20,0.12,weekly
+Trend+Carry (70/30),0.989,5.27,6.13,0.859,6.33,41.05,705270.0,-0.267,2.361,6.7,equal_weight,atr,20,0.12,weekly
+Trend+Network (70/30),0.947,5.19,5.44,0.956,6.51,40.42,702075.0,-0.28,2.29,6.7,equal_weight,atr,20,0.12,weekly

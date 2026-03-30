@@ -1,0 +1,11 @@
+sharpe,cagr_pct,max_dd_pct,calmar,realized_vol_pct,total_return_pct,final_equity,skew,kurtosis,n_years,allocation,vol_method,vol_window,vol_target,rebalance_freq,signal_id,signal_name,signal_type,avg_time_in_market
+1.168,5.7,4.39,1.298,5.84,45.01,725050.0,-0.313,2.408,6.7,equal_weight,atr,20,0.12,weekly,BL-FS,Fast+Slow,blend,79.8
+1.156,4.5,4.43,1.017,4.57,34.33,671656.0,-0.376,3.062,6.7,equal_weight,atr,20,0.12,weekly,RF-BAR-HUR,Barbell+Hurst,regime,62.6
+1.098,5.95,4.71,1.261,6.52,47.27,736335.0,-0.318,2.402,6.7,equal_weight,atr,20,0.12,weekly,BL-BAR,Barbell (S+L),blend,96.2
+1.05,4.47,4.19,1.067,4.99,34.04,670194.0,-0.397,3.109,6.7,equal_weight,atr,20,0.12,weekly,RF-FS-ADX,FastSlow+ADX,regime,63.1
+1.0,4.61,4.71,0.98,5.45,35.31,676539.0,-0.374,2.96,6.7,equal_weight,atr,20,0.12,weekly,RF-BAR-ADX,Barbell+ADX,regime,76.3
+0.997,5.37,4.15,1.294,6.43,42.0,710019.0,-0.245,2.531,6.7,equal_weight,atr,20,0.12,weekly,BL-ALL,Equal Blend (5),blend,97.1
+0.991,5.38,5.12,1.051,6.42,42.08,710416.0,-0.267,2.273,6.7,equal_weight,atr,20,0.12,weekly,RF-BAR-CUS,Barbell+CUSUM,regime,95.9
+0.971,3.97,4.07,0.974,4.64,27.37,636838.0,-0.123,3.038,6.2,equal_weight,atr,20,0.12,weekly,BL-CON,Consensus (4/5),blend,50.3
+0.816,3.7,4.62,0.801,5.23,27.6,638015.0,-0.514,3.315,6.7,equal_weight,atr,20,0.12,weekly,RF-BAR-VOL,Barbell+VolReg,regime,76.7
+0.741,2.65,4.22,0.629,4.0,17.69,588456.0,-0.314,3.825,6.2,equal_weight,atr,20,0.12,weekly,RF-CON-ADX,Consensus+ADX,regime,39.9

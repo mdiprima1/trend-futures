@@ -191,8 +191,11 @@ def run_backtest(strategy_name, ticker, start_year=2020, end_year=2024,
                 sig = signal; atr_v = atr_calc(highs, lows, closes, 14)
 
             if sig != 0 and not in_barrier:
-                # Size: 10% of portfolio value / ATR
-                qty = max(1, int(equity * 0.1 / (atr_v if atr_v > 0 else 1)))
+                # Size: 10% of portfolio risk / ATR, but cap to affordable shares
+                raw_qty = max(1, int(equity * 0.1 / (atr_v if atr_v > 0 else 1)))
+                # Cap: can't buy more than equity allows (no leverage)
+                max_affordable = int(equity * 0.95 / close_p) if close_p > 0 else 1
+                qty = min(raw_qty, max(1, max_affordable))
 
                 if sig == 1:
                     pending = ("buy", qty)

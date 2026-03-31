@@ -1,0 +1,58 @@
+2026-03-31T14:51:26.0911758Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.5.0.0 Mode: DEBUG (64bit) Host: Marcuss-MacBook-Pro
+2026-03-31T14:51:26.0991345Z TRACE:: Engine.Main(): Started 2:51 PM
+2026-03-31T14:51:26.1073205Z TRACE:: JobQueue.NextJob(): Selected /LeanCLI/main.py
+2026-03-31T14:51:27.2942442Z TRACE:: ApiDataProvider(): Data Terms of Use has been signed. 
+ Find full agreement at: https://www.quantconnect.com/terms/data/?organization=cf76b5da3f6f6cfc3831bc742f7280bc 
+==========================================================================
+CLI API Access Agreement: On 1/11/2026 You Agreed:
+ - Display or distribution of data obtained through CLI API Access is not permitted.  
+ - Data and Third Party Data obtained via CLI API Access can only be used for individual or internal employee's use.
+ - Data is provided in LEAN format can not be manipulated for transmission or use in other applications. 
+ - QuantConnect is not liable for the quality of data received and is not responsible for trading losses. 
+==========================================================================
+2026-03-31T14:51:30.3353671Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2026-03-31T14:51:30.3400489Z TRACE:: Engine.Run(): Resource limits '0' CPUs. 2147483647 MB RAM.
+2026-03-31T14:51:30.3413348Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2026-03-31T14:51:30.5653637Z TRACE:: PythonInitializer.Initialize(): start...
+2026-03-31T14:51:30.6996519Z TRACE:: PythonInitializer.Initialize(): ended
+2026-03-31T14:51:30.7003510Z TRACE:: AlgorithmPythonWrapper(): Python version 3.11.9 | packaged by conda-forge | (main, Apr 19 2024, 18:26:34) [GCC 12.3.0]: Importing python module main
+2026-03-31T14:51:32.0623123Z TRACE:: AlgorithmPythonWrapper(): main successfully imported.
+2026-03-31T14:51:32.0636886Z TRACE:: AlgorithmPythonWrapper(): Creating IAlgorithm instance.
+2026-03-31T14:51:32.1215088Z TRACE:: LocalObjectStore.Initialize(): Storage Root: /Storage. StorageFileCount 9999999. StorageLimit 10240MB. StoragePermissions Read=True Write=True Delete=True
+2026-03-31T14:51:32.1251268Z TRACE:: HistoryProviderManager.Initialize(): history providers [SubscriptionDataReaderHistoryProvider]
+2026-03-31T14:51:32.1264004Z TRACE:: BaseSetupHandler.Setup(LocalPlatform): UID: 184399, PID: -227844926, Version: 2.5.0.0, Source: WebIDE
+2026-03-31T14:51:32.1503181Z TRACE:: BacktestingResultHandler(): Sample Period Set: 1051.92
+2026-03-31T14:51:32.1572970Z ERROR:: Engine.Run(): During the algorithm initialization, the following exception has occurred: ApiDataProvider(): Must be subscribed to map and factor files to use the ApiDataProvider to download Equity data from QuantConnect. Please visit https://www.quantconnect.com/datasets/quantconnect-security-master for details. in ApiDataProvider.cs:line 209 ApiDataProvider(): Must be subscribed to map and factor files to use the ApiDataProvider to download Equity data from QuantConnect. Please visit https://www.quantconnect.com/datasets/quantconnect-security-master for details.
+2026-03-31T14:51:32.1575305Z TRACE:: JOB HANDLERS:
+         DataFeed:             QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+         Setup:                QuantConnect.Lean.Engine.Setup.BacktestingSetupHandler
+         RealTime:             QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+         Results:              QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+         Transactions:         QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+         Object Store:         QuantConnect.Lean.Engine.Storage.LocalObjectStore
+         History Provider:     QuantConnect.Lean.Engine.HistoricalData.HistoryProviderManager
+         Brokerage:            QuantConnect.Brokerages.Backtesting.BacktestingBrokerage
+         Data Provider:        QuantConnect.Lean.Engine.DataFeeds.ApiDataProvider
+
+2026-03-31T14:51:32.1576848Z TRACE:: FileSystemDataFeed.Exit(): Start. Setting cancellation token...
+2026-03-31T14:51:32.1581453Z TRACE:: FileSystemDataFeed.Exit(): Exit Finished.
+2026-03-31T14:51:32.1582719Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2026-03-31T14:51:32.1611937Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2026-03-31T14:51:32.1620439Z TRACE:: StopSafely(): Waiting for 'Result Thread' thread to stop...
+2026-03-31T14:51:32.1620559Z ERROR:: During the algorithm initialization, the following exception has occurred: ApiDataProvider(): Must be subscribed to map and factor files to use the ApiDataProvider to download Equity data from QuantConnect. Please visit https://www.quantconnect.com/datasets/quantconnect-security-master for details. in ApiDataProvider.cs:line 209 ApiDataProvider(): Must be subscribed to map and factor files to use the ApiDataProvider to download Equity data from QuantConnect. Please visit https://www.quantconnect.com/datasets/quantconnect-security-master for details.
+ ApiDataProvider(): Must be subscribed to map and factor files to use the ApiDataProvider to download Equity data from QuantConnect. Please visit https://www.quantconnect.com/datasets/quantconnect-security-master for details. in ApiDataProvider.cs:line 209 ApiDataProvider(): Must be subscribed to map and factor files to use the ApiDataProvider to download Equity data from QuantConnect. Please visit https://www.quantconnect.com/datasets/quantconnect-security-master for details.
+2026-03-31T14:51:32.1621720Z TRACE:: Debug: Your log was successfully created and can be retrieved from: /Results/1227698507-log.txt
+2026-03-31T14:51:32.1622813Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2026-03-31T14:51:32.1821993Z TRACE:: 
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2026-03-31T14:51:32.1822534Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2026-03-31T14:51:32.1823938Z TRACE:: Engine.Run(): Disconnecting from brokerage...
+2026-03-31T14:51:32.1824714Z TRACE:: Engine.Run(): Disposing of setup handler...
+2026-03-31T14:51:32.1825862Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2026-03-31T14:51:32.1839137Z TRACE:: Engine.Main(): Packet removed from queue: 1227698507
+2026-03-31T14:51:32.1839878Z TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+2026-03-31T14:51:32.1856813Z TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of system handlers.
+2026-03-31T14:51:32.1858110Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+2026-03-31T14:51:32.1859475Z TRACE:: LocalObjectStore.Dispose(): start...
+2026-03-31T14:51:32.1861066Z TRACE:: LocalObjectStore.Dispose(): end
+2026-03-31T14:51:32.1862461Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed of algorithm handlers.

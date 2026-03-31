@@ -1,0 +1,63 @@
+2026-03-31T14:51:57.5703038Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.5.0.0 Mode: DEBUG (64bit) Host: Marcuss-MacBook-Pro
+2026-03-31T14:51:57.5722937Z TRACE:: Engine.Main(): Started 2:51 PM
+2026-03-31T14:51:57.5790712Z TRACE:: JobQueue.NextJob(): Selected /LeanCLI/main.py
+2026-03-31T14:51:58.4023023Z TRACE:: DataBentoDataProvider.Initialize: found no data aggregator instance, creating QuantConnect.Lean.Engine.DataFeeds.AggregationManager
+2026-03-31T14:51:58.7635962Z TRACE:: HistoryProviderManager.Initialize(): history providers [SubscriptionDataReaderHistoryProvider]
+2026-03-31T14:51:58.7766062Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2026-03-31T14:51:58.7817088Z TRACE:: Engine.Run(): Resource limits '0' CPUs. 2147483647 MB RAM.
+2026-03-31T14:51:58.7825688Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2026-03-31T14:51:58.8040985Z TRACE:: PythonInitializer.Initialize(): start...
+2026-03-31T14:51:58.9324807Z TRACE:: PythonInitializer.Initialize(): ended
+2026-03-31T14:51:58.9332402Z TRACE:: AlgorithmPythonWrapper(): Python version 3.11.9 | packaged by conda-forge | (main, Apr 19 2024, 18:26:34) [GCC 12.3.0]: Importing python module main
+2026-03-31T14:52:00.2569387Z TRACE:: AlgorithmPythonWrapper(): main successfully imported.
+2026-03-31T14:52:00.2584807Z TRACE:: AlgorithmPythonWrapper(): Creating IAlgorithm instance.
+2026-03-31T14:52:00.3225070Z TRACE:: LocalObjectStore.Initialize(): Storage Root: /Storage. StorageFileCount 9999999. StorageLimit 10240MB. StoragePermissions Read=True Write=True Delete=True
+2026-03-31T14:52:00.3249193Z TRACE:: HistoryProviderManager.Initialize(): history providers [SubscriptionDataReaderHistoryProvider]
+2026-03-31T14:52:00.3259550Z TRACE:: BaseSetupHandler.Setup(LocalPlatform): UID: 184399, PID: -227844926, Version: 2.5.0.0, Source: WebIDE
+2026-03-31T14:52:00.3517866Z TRACE:: BacktestingResultHandler(): Sample Period Set: 1051.92
+2026-03-31T14:52:00.3600717Z ERROR:: Engine.Run(): During the algorithm initialization, the following exception has occurred: LocalZipMapFileProvider couldn't find any map files going all the way back to 2/27/2026 12:00:00 AM for usa in LocalZipMapFileProvider.cs:line 138 LocalZipMapFileProvider couldn't find any map files going all the way back to 2/27/2026 12:00:00 AM for usa
+2026-03-31T14:52:00.3603331Z TRACE:: JOB HANDLERS:
+         DataFeed:             QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+         Setup:                QuantConnect.Lean.Engine.Setup.BacktestingSetupHandler
+         RealTime:             QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+         Results:              QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+         Transactions:         QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+         Object Store:         QuantConnect.Lean.Engine.Storage.LocalObjectStore
+         History Provider:     QuantConnect.Lean.Engine.HistoricalData.HistoryProviderManager
+         Brokerage:            QuantConnect.Brokerages.Backtesting.BacktestingBrokerage
+         Data Provider:        QuantConnect.Lean.Engine.DataFeeds.DownloaderDataProvider
+
+2026-03-31T14:52:00.3604819Z TRACE:: FileSystemDataFeed.Exit(): Start. Setting cancellation token...
+2026-03-31T14:52:00.3609105Z TRACE:: FileSystemDataFeed.Exit(): Exit Finished.
+2026-03-31T14:52:00.3610424Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2026-03-31T14:52:00.3639623Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2026-03-31T14:52:00.3648400Z TRACE:: StopSafely(): Waiting for 'Result Thread' thread to stop...
+2026-03-31T14:52:00.3648526Z ERROR:: During the algorithm initialization, the following exception has occurred: LocalZipMapFileProvider couldn't find any map files going all the way back to 2/27/2026 12:00:00 AM for usa in LocalZipMapFileProvider.cs:line 138 LocalZipMapFileProvider couldn't find any map files going all the way back to 2/27/2026 12:00:00 AM for usa
+ LocalZipMapFileProvider couldn't find any map files going all the way back to 2/27/2026 12:00:00 AM for usa in LocalZipMapFileProvider.cs:line 138 LocalZipMapFileProvider couldn't find any map files going all the way back to 2/27/2026 12:00:00 AM for usa
+2026-03-31T14:52:00.3650570Z TRACE:: Debug: Your log was successfully created and can be retrieved from: /Results/1151718411-log.txt
+2026-03-31T14:52:00.3651374Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2026-03-31T14:52:00.3876124Z TRACE:: 
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2026-03-31T14:52:00.3876694Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2026-03-31T14:52:00.3878089Z TRACE:: Engine.Run(): Disconnecting from brokerage...
+2026-03-31T14:52:00.3879081Z TRACE:: Engine.Run(): Disposing of setup handler...
+2026-03-31T14:52:00.3880231Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2026-03-31T14:52:00.3884392Z TRACE:: DataMonitor.Exit(): start...
+2026-03-31T14:52:00.3885107Z TRACE:: StopSafely(): Waiting for '' thread to stop...
+2026-03-31T14:52:00.3888999Z TRACE:: DataMonitor.GenerateReport():
+DATA USAGE:: Total data requests 0
+DATA USAGE:: Succeeded data requests 0
+DATA USAGE:: Failed data requests 0
+DATA USAGE:: Failed data requests percentage 0%
+DATA USAGE:: Total universe data requests 0
+DATA USAGE:: Succeeded universe data requests 0
+DATA USAGE:: Failed universe data requests 0
+DATA USAGE:: Failed universe data requests percentage 0%
+2026-03-31T14:52:00.3907703Z TRACE:: DataMonitor.Exit(): end
+2026-03-31T14:52:00.3919906Z TRACE:: Engine.Main(): Packet removed from queue: 1151718411
+2026-03-31T14:52:00.3920687Z TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+2026-03-31T14:52:00.3923770Z TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of system handlers.
+2026-03-31T14:52:00.3924873Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+2026-03-31T14:52:00.3925827Z TRACE:: LocalObjectStore.Dispose(): start...
+2026-03-31T14:52:00.3927451Z TRACE:: LocalObjectStore.Dispose(): end
+2026-03-31T14:52:00.3928822Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed of algorithm handlers.

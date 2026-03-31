@@ -13,14 +13,15 @@ import pandas as pd
 from src.config import CONTRACT_MULTIPLIERS, COMMISSIONS
 
 
-# Tick sizes for slippage modeling
+# Tick sizes for slippage modeling (pulled from costs if available)
 TICK_SIZES = {
-    "ES": 0.25,
-    "NQ": 0.25,
-    "ZN": 1 / 64,  # 1/64 of a point
-    "GC": 0.10,
-    "CL": 0.01,
-    "6E": 0.00005,
+    "ES": 0.25, "NQ": 0.25, "RTY": 0.10, "NKD": 5.0,
+    "ZT": 1/128, "ZN": 1/64, "ZB": 1/32,
+    "6E": 0.00005, "6B": 0.0001, "6J": 0.0000005, "6A": 0.0001,
+    "6C": 0.00005, "6S": 0.0001, "6N": 0.0001,
+    "CL": 0.01, "NG": 0.001, "RB": 0.0001, "HO": 0.0001,
+    "GC": 0.10, "SI": 0.005, "HG": 0.0005, "PL": 0.10,
+    "ZC": 0.25, "ZS": 0.25, "ZW": 0.25, "LE": 0.025,
 }
 
 

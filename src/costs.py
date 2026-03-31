@@ -64,8 +64,89 @@ COST_TABLE = {
         "spread_ticks": 1.0,               # 1 tick = $6.25
         "tick_size": 0.00005,
         "avg_daily_volume": 200_000,
-        "roll_cost_bps": 1.0,              # Interest rate differential
+        "roll_cost_bps": 1.0,
         "rolls_per_year": 4,
+    },
+    # ── Phase 2+3 Expansion ──
+    "RTY": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.10,
+        "avg_daily_volume": 200_000, "roll_cost_bps": 0.5, "rolls_per_year": 4,
+    },
+    "NKD": {
+        "commission_per_side": 1.05, "spread_ticks": 5.0, "tick_size": 5.0,
+        "avg_daily_volume": 30_000, "roll_cost_bps": 0.5, "rolls_per_year": 4,
+    },
+    "ZT": {
+        "commission_per_side": 0.76, "spread_ticks": 1.0, "tick_size": 1.0/128,
+        "avg_daily_volume": 800_000, "roll_cost_bps": 1.5, "rolls_per_year": 4,
+    },
+    "ZB": {
+        "commission_per_side": 0.76, "spread_ticks": 1.0, "tick_size": 1.0/32,
+        "avg_daily_volume": 300_000, "roll_cost_bps": 2.5, "rolls_per_year": 4,
+    },
+    "6B": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0001,
+        "avg_daily_volume": 100_000, "roll_cost_bps": 1.0, "rolls_per_year": 4,
+    },
+    "6J": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0000005,
+        "avg_daily_volume": 150_000, "roll_cost_bps": 1.0, "rolls_per_year": 4,
+    },
+    "6A": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0001,
+        "avg_daily_volume": 100_000, "roll_cost_bps": 1.5, "rolls_per_year": 4,
+    },
+    "6C": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.00005,
+        "avg_daily_volume": 80_000, "roll_cost_bps": 1.0, "rolls_per_year": 4,
+    },
+    "6S": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0001,
+        "avg_daily_volume": 50_000, "roll_cost_bps": 1.0, "rolls_per_year": 4,
+    },
+    "6N": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0001,
+        "avg_daily_volume": 30_000, "roll_cost_bps": 1.5, "rolls_per_year": 4,
+    },
+    "NG": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.001,
+        "avg_daily_volume": 300_000, "roll_cost_bps": 5.0, "rolls_per_year": 12,
+    },
+    "HG": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0005,
+        "avg_daily_volume": 80_000, "roll_cost_bps": 1.5, "rolls_per_year": 6,
+    },
+    "SI": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.005,
+        "avg_daily_volume": 60_000, "roll_cost_bps": 2.0, "rolls_per_year": 6,
+    },
+    "PL": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.10,
+        "avg_daily_volume": 15_000, "roll_cost_bps": 2.0, "rolls_per_year": 4,
+    },
+    "RB": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0001,
+        "avg_daily_volume": 100_000, "roll_cost_bps": 3.0, "rolls_per_year": 12,
+    },
+    "HO": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.0001,
+        "avg_daily_volume": 100_000, "roll_cost_bps": 3.0, "rolls_per_year": 12,
+    },
+    "ZC": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.25,
+        "avg_daily_volume": 300_000, "roll_cost_bps": 2.0, "rolls_per_year": 5,
+    },
+    "ZS": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.25,
+        "avg_daily_volume": 200_000, "roll_cost_bps": 2.0, "rolls_per_year": 5,
+    },
+    "ZW": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.25,
+        "avg_daily_volume": 100_000, "roll_cost_bps": 2.0, "rolls_per_year": 5,
+    },
+    "LE": {
+        "commission_per_side": 1.05, "spread_ticks": 1.0, "tick_size": 0.025,
+        "avg_daily_volume": 40_000, "roll_cost_bps": 1.0, "rolls_per_year": 6,
     },
 }
 

@@ -48,7 +48,7 @@ def load_1min(symbol):
 def resample(df, minutes):
     if minutes == 1:
         return df
-    return df.resample(f"{minutes}min").agg({
+    return df.resample(f"{minutes}min", label='right').agg({
         "open": "first", "high": "max", "low": "min",
         "close": "last", "volume": "sum",
     }).dropna(subset=["close"])

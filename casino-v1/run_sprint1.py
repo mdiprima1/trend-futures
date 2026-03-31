@@ -62,7 +62,7 @@ def resample_bars(df, minutes):
     """Resample 1-min bars to N-minute bars."""
     if minutes == 1:
         return df
-    return df.resample(f"{minutes}min").agg({
+    return df.resample(f"{minutes}min", label='right').agg({
         "open": "first",
         "high": "max",
         "low": "min",

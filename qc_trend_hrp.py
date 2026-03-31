@@ -12,7 +12,10 @@ class TrendFuturesHRP(QCAlgorithm):
     Universe: 26 CME futures across 6 sectors
     Allocation: Pre-computed HRP weights
     Vol target: 15% annualized
-    Rebalance: Weekly (Monday)
+    Rebalance: Daily check, weekly full rebalance
+
+    Roll handling: check EVERY DAY if we should have a position
+    but don't (due to roll gap). Re-enter immediately.
     """
 
     def initialize(self):
@@ -21,15 +24,14 @@ class TrendFuturesHRP(QCAlgorithm):
         self._initial_capital = 1_000_000
         self.set_cash(self._initial_capital)
 
-        # ── Parameters ──
         self.ema_fast = 10
         self.ema_slow = 100
         self.tsmom_lookback = 252
         self.atr_period = 20
         self.vol_target = 0.15
-        self.max_contracts = 500
+        self.max_contracts = 200
 
-        # ── HRP Weights ──
+        # HRP Weights
         self.hrp_weights = {
             "ZT": 0.8270, "ZN": 0.0265, "ZB": 0.0221,
             "6C": 0.0208, "6E": 0.0170, "GC": 0.0142,
@@ -42,7 +44,10 @@ class TrendFuturesHRP(QCAlgorithm):
             "RTY": 0.0009, "NQ": 0.0008, "RB": 0.0005,
         }
 
-        # ── Futures Configuration ──
+        # Target signals (persisted between rebalances)
+        self._target_signals = {}
+
+        # Futures
         self.instrument_configs = {
             "ES":  Futures.Indices.SP_500_E_MINI,
             "NQ":  Futures.Indices.NASDAQ_100_E_MINI,
@@ -72,10 +77,8 @@ class TrendFuturesHRP(QCAlgorithm):
             "LE":  Futures.Meats.LIVE_CATTLE,
         }
 
-        # ── Initialize Futures ──
         self.futures = {}
         self.symbol_keys = {}
-        self.current_contracts = {}
         self._previous_contracts = {}
 
         for key, contract in self.instrument_configs.items():
@@ -90,11 +93,9 @@ class TrendFuturesHRP(QCAlgorithm):
             self.futures[future.symbol] = future
             self.symbol_keys[future.symbol] = key
 
-        # ── State ──
-        self._last_rebalance_week = None
-        self._debug_logged = False
+        self._last_signal_week = None
 
-        # ── Equity Tracking ──
+        # Equity tracking
         self._equity_log = []
         self._last_equity_date = None
         self._year_start_equity = {}
@@ -110,19 +111,30 @@ class TrendFuturesHRP(QCAlgorithm):
         self._handle_rollovers()
         self._record_daily()
 
-        # Weekly rebalance on Monday
+        # Recompute signals weekly (Monday)
         current_week = f"{self.time.year}-{self.time.isocalendar()[1]}"
-        if current_week == self._last_rebalance_week:
-            return
+        if current_week != self._last_signal_week and self.time.weekday() == 0:
+            self._last_signal_week = current_week
+            self._update_signals()
 
-        # Rebalance on Monday, or any day if we've been forced (e.g., after roll)
-        if self.time.weekday() != 0 and self._last_rebalance_week is not None:
-            return
+        # Enforce positions DAILY — this catches roll gaps
+        self._enforce_positions()
 
-        self._last_rebalance_week = current_week
-        self._rebalance()
+    def _update_signals(self):
+        """Recompute target signals for all instruments."""
+        for s, future in self.futures.items():
+            key = self.symbol_keys[s]
+            mapped = future.mapped
+            if mapped is None:
+                self._target_signals[key] = 0
+                continue
+            self._target_signals[key] = self._compute_signal(mapped)
 
-    def _rebalance(self):
+    def _enforce_positions(self):
+        """
+        Check EVERY DAY: do we have the right position?
+        If not (e.g., after a roll gap), fix it immediately.
+        """
         portfolio_value = self.portfolio.total_portfolio_value
 
         for s, future in self.futures.items():
@@ -131,39 +143,47 @@ class TrendFuturesHRP(QCAlgorithm):
             if mapped is None:
                 continue
 
-            self.current_contracts[s] = mapped
-            signal = self._compute_signal(mapped)
+            signal = self._target_signals.get(key, 0)
             weight = self.hrp_weights.get(key, 0)
 
+            # What should we hold?
             if signal == 0 or weight < 0.0005:
+                # Should be flat
                 if self.portfolio[mapped].invested:
                     self.liquidate(mapped, tag=f"{key} FLAT")
                 continue
 
+            # Compute target position
             target_qty = self._compute_position(mapped, key, signal, weight, portfolio_value)
             if target_qty is None:
                 continue
 
             current_qty = self.portfolio[mapped].quantity
-            diff = target_qty - current_qty
-            if abs(diff) >= 1:
-                self.market_order(mapped, diff, tag=f"{key} {'L' if target_qty > 0 else 'S'}{abs(target_qty)}")
+
+            # If we're flat but should be in (roll gap), enter immediately
+            if current_qty == 0 and target_qty != 0:
+                self.market_order(mapped, target_qty, tag=f"{key} ENTER")
+                continue
+
+            # Normal weekly adjustment: only adjust if difference is >20%
+            if current_qty != 0:
+                pct_diff = abs(target_qty - current_qty) / abs(current_qty)
+                if pct_diff > 0.20:
+                    diff = target_qty - current_qty
+                    if abs(diff) >= 1:
+                        self.market_order(mapped, diff, tag=f"{key} ADJ")
 
     def _compute_signal(self, mapped):
-        """Fast+Slow blend: EMA(10/100) + TSMOM(252d)."""
         try:
             h = self.history(mapped, self.tsmom_lookback + 20, Resolution.DAILY)
             if h.empty or len(h) < self.ema_slow + 10:
                 return 0
 
             closes = h["close"].values
-
-            # EMA crossover
             ema_f = self._ema_val(closes, self.ema_fast)
             ema_s = self._ema_val(closes, self.ema_slow)
             ema_signal = 1 if ema_f > ema_s else -1
 
-            # TSMOM
             if len(closes) >= self.tsmom_lookback:
                 ret = closes[-1] / closes[-self.tsmom_lookback] - 1
                 tsmom_signal = 1 if ret > 0 else -1
@@ -171,20 +191,13 @@ class TrendFuturesHRP(QCAlgorithm):
                 tsmom_signal = 0
 
             blend = (ema_signal + tsmom_signal) / 2.0
-            if blend > 0:
-                return 1
-            elif blend < 0:
-                return -1
+            if blend > 0: return 1
+            elif blend < 0: return -1
             return 0
         except Exception:
             return 0
 
     def _compute_position(self, mapped, key, signal, weight, portfolio_value):
-        """
-        Vol-targeted position sizing.
-        contracts = (portfolio * weight * vol_target) / (daily_risk_per_contract * sqrt(252))
-        where daily_risk_per_contract = ATR * multiplier
-        """
         try:
             h = self.history(mapped, self.atr_period + 5, Resolution.DAILY)
             if h.empty or len(h) < self.atr_period:
@@ -193,45 +206,22 @@ class TrendFuturesHRP(QCAlgorithm):
             closes = h["close"].values
             highs = h["high"].values
             lows = h["low"].values
-
-            # ATR in price points
-            prev_c = np.roll(closes, 1)
-            prev_c[0] = closes[0]
+            prev_c = np.roll(closes, 1); prev_c[0] = closes[0]
             tr = np.maximum(highs - lows, np.maximum(np.abs(highs - prev_c), np.abs(lows - prev_c)))
             atr = float(np.mean(tr[-self.atr_period:]))
-
-            if atr <= 0:
-                return None
+            if atr <= 0: return None
 
             sec = self.securities[mapped]
             mult = sec.symbol_properties.contract_multiplier
-            if not mult or mult <= 0:
-                mult = 1
+            if not mult or mult <= 0: mult = 1
 
-            # Daily dollar risk per contract
             dollar_risk_per_contract = atr * mult
+            if dollar_risk_per_contract <= 0: return None
 
-            # Target annual dollar risk for this instrument
-            # = portfolio * weight * vol_target
             target_annual_risk = portfolio_value * weight * self.vol_target
-
-            # Target daily risk = annual / sqrt(252)
             target_daily_risk = target_annual_risk / np.sqrt(252)
-
-            # Number of contracts
-            n = target_daily_risk / dollar_risk_per_contract
-            n = int(min(abs(n), self.max_contracts))
-
-            # Debug log first time
-            if not self._debug_logged and key == "ZT":
-                price = float(closes[-1])
-                inst_vol = (atr / price) * np.sqrt(252) if price > 0 else 0
-                self.log(f"[DEBUG] {key}: price={price:.4f}, ATR={atr:.6f}, mult={mult}, "
-                         f"inst_vol={inst_vol:.4f}, risk/contract=${dollar_risk_per_contract:.2f}, "
-                         f"target_risk=${target_daily_risk:.0f}, contracts={n}, "
-                         f"notional=${n*price*mult:,.0f}, leverage={n*price*mult/portfolio_value:.1f}x")
-                self._debug_logged = True
-
+            n = int(target_daily_risk / dollar_risk_per_contract)
+            n = min(abs(n), self.max_contracts)
             return max(1, n) * signal if n >= 1 else 0
         except Exception:
             return None
@@ -247,20 +237,13 @@ class TrendFuturesHRP(QCAlgorithm):
         for s, future in self.futures.items():
             key = self.symbol_keys[s]
             mapped = future.mapped
-            if mapped is None:
-                continue
+            if mapped is None: continue
             prev = self._previous_contracts.get(s)
-            self.current_contracts[s] = mapped
             if prev is not None and prev != mapped:
                 if self.portfolio[prev].invested:
                     qty = self.portfolio[prev].quantity
                     self.liquidate(prev, tag=f"Roll out {key}")
-                    # Immediately re-enter the same position in the new contract
                     self.market_order(mapped, qty, tag=f"Roll in {key}")
-                elif key in self.hrp_weights and self.hrp_weights[key] > 0.005:
-                    # Contract changed but we had no position in old contract
-                    # Force a rebalance to enter the new contract
-                    self._last_rebalance_week = None  # Reset to trigger rebalance
             self._previous_contracts[s] = mapped
 
     def _record_daily(self):
@@ -279,26 +262,22 @@ class TrendFuturesHRP(QCAlgorithm):
 
     def on_end_of_algorithm(self):
         for year in sorted(self._year_start_equity.keys()):
-            start_eq = self._year_start_equity[year]
             rets = self._daily_returns.get(year, [])
+            start_eq = self._year_start_equity[year]
             if rets:
                 arr = np.array(rets)
-                mean_r = float(np.mean(arr))
                 std_r = float(np.std(arr, ddof=1)) if len(arr) > 1 else 0.0
-                sharpe = (mean_r / std_r * np.sqrt(252)) if std_r > 0 else 0.0
+                sharpe = (float(np.mean(arr)) / std_r * np.sqrt(252)) if std_r > 0 else 0.0
                 cum = np.cumprod(1.0 + arr)
                 end_eq = start_eq * cum[-1]
                 ret_pct = (end_eq / start_eq - 1.0) * 100
-                peak = np.maximum.accumulate(cum)
-                dd = float(np.min(cum / peak - 1.0) * 100)
+                dd = float(np.min(cum / np.maximum.accumulate(cum) - 1.0) * 100)
             else:
-                sharpe = ret_pct = dd = 0.0
-                end_eq = start_eq
+                sharpe = ret_pct = dd = 0.0; end_eq = start_eq
             self.set_runtime_statistic(f"y_{year}", f"{sharpe:.3f}|{ret_pct:.1f}|{dd:.1f}|{end_eq:.0f}")
 
         if self._equity_log:
-            bs = 25
-            nb = 0
+            bs = 25; nb = 0
             for i in range(0, len(self._equity_log), bs):
                 self.set_runtime_statistic(f"eq_{nb:03d}", "|".join(self._equity_log[i:i+bs]))
                 nb += 1

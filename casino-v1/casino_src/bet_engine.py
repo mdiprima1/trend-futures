@@ -1,8 +1,9 @@
 """
-Casino V1 — Bet Engine
+Casino V1 — Bet Engine (v2)
 
 Processes signals through triple barrier (profit target / stop loss / time limit).
-Each signal becomes a "bet" with a defined outcome: win, loss, or scratch.
+Iterates bar-by-bar like QC's on_data — allows re-entry after any exit
+if the signal persists. This matches QC's behavior of evaluating every bar.
 """
 import numpy as np
 import pandas as pd
@@ -17,29 +18,8 @@ def run_bets(
     atr_period: int = 14,
 ) -> pd.DataFrame:
     """
-    Process signals through triple barrier.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        OHLCV data (1-min or any timeframe).
-    signals : pd.Series
-        +1 (long signal), -1 (short signal), 0 (no signal). Same index as df.
-    pt_atr_mult : float
-        Profit target as multiple of ATR.
-    sl_atr_mult : float
-        Stop loss as multiple of ATR.
-    max_bars : int
-        Maximum bars to hold before forced exit (time barrier).
-    atr_period : int
-        ATR lookback period.
-
-    Returns
-    -------
-    pd.DataFrame with columns:
-        entry_time, exit_time, direction, entry_price, exit_price,
-        atr_at_entry, pt_price, sl_price, result (win/loss/scratch),
-        pnl_points, bars_held
+    Process signals through triple barrier, bar by bar.
+    Re-enters after any exit (time barrier, PT, SL) if signal persists.
     """
     # Compute ATR
     h, l, c = df["high"], df["low"], df["close"]
@@ -47,120 +27,105 @@ def run_bets(
     tr = pd.concat([h - l, (h - pc).abs(), (l - pc).abs()], axis=1).max(axis=1)
     atr_series = tr.rolling(atr_period).mean()
 
-    # Find entry points (signal != 0)
-    entry_mask = signals != 0
-    entry_indices = df.index[entry_mask]
-
     bets = []
-    last_exit_idx = -1  # Don't enter while in a trade
 
-    for entry_time in entry_indices:
-        entry_loc = df.index.get_loc(entry_time)
+    # State machine
+    in_trade = False
+    direction = 0
+    entry_price = 0.0
+    entry_atr = 0.0
+    pt_price = 0.0
+    sl_price = 0.0
+    bars_left = 0
+    entry_time = None
 
-        # Skip if we're still in a previous trade
-        if entry_loc <= last_exit_idx:
-            continue
+    for i in range(len(df)):
+        bar = df.iloc[i]
+        bar_time = df.index[i]
+        bar_close = float(bar["close"])
+        bar_high = float(bar["high"])
+        bar_low = float(bar["low"])
+        sig = int(signals.iloc[i]) if i < len(signals) else 0
 
-        direction = int(signals.loc[entry_time])
-        entry_price = float(df.loc[entry_time, "close"])
-        entry_atr = float(atr_series.loc[entry_time]) if not pd.isna(atr_series.loc[entry_time]) else 0
+        atr_val = float(atr_series.iloc[i]) if not pd.isna(atr_series.iloc[i]) else 0
 
-        if entry_atr <= 0:
-            continue
+        # ── Manage active trade ──
+        if in_trade:
+            bars_left -= 1
+            hit = False
+            won = False
 
-        # Set barriers
-        if direction == 1:  # Long
-            pt_price = entry_price + pt_atr_mult * entry_atr
-            sl_price = entry_price - sl_atr_mult * entry_atr
-        else:  # Short
-            pt_price = entry_price - pt_atr_mult * entry_atr
-            sl_price = entry_price + sl_atr_mult * entry_atr
-
-        # Scan forward for barrier touch
-        max_exit = min(entry_loc + max_bars, len(df) - 1)
-        exit_price = None
-        exit_time = None
-        result = "scratch"
-        bars_held = 0
-
-        for j in range(entry_loc + 1, max_exit + 1):
-            bar_high = float(df.iloc[j]["high"])
-            bar_low = float(df.iloc[j]["low"])
-            bar_close = float(df.iloc[j]["close"])
-            bars_held = j - entry_loc
-
-            if direction == 1:  # Long
-                # Check stop first (conservative)
-                if bar_low <= sl_price:
-                    exit_price = sl_price
-                    exit_time = df.index[j]
-                    result = "loss"
-                    break
-                if bar_high >= pt_price:
-                    exit_price = pt_price
-                    exit_time = df.index[j]
-                    result = "win"
-                    break
-            else:  # Short
-                if bar_high >= sl_price:
-                    exit_price = sl_price
-                    exit_time = df.index[j]
-                    result = "loss"
-                    break
-                if bar_low <= pt_price:
-                    exit_price = pt_price
-                    exit_time = df.index[j]
-                    result = "win"
-                    break
-
-        # Time barrier (forced exit)
-        if exit_price is None:
-            exit_price = float(df.iloc[max_exit]["close"])
-            exit_time = df.index[max_exit]
-            bars_held = max_exit - entry_loc
             if direction == 1:
-                result = "win" if exit_price > entry_price else "loss"
+                if bar_low <= sl_price:
+                    hit = True; won = False
+                    exit_price = sl_price
+                elif bar_high >= pt_price:
+                    hit = True; won = True
+                    exit_price = pt_price
             else:
-                result = "win" if exit_price < entry_price else "loss"
+                if bar_high >= sl_price:
+                    hit = True; won = False
+                    exit_price = sl_price
+                elif bar_low <= pt_price:
+                    hit = True; won = True
+                    exit_price = pt_price
 
-        # PnL in points
+            if bars_left <= 0 and not hit:
+                hit = True
+                exit_price = bar_close
+                won = (bar_close - entry_price) * direction > 0
+
+            if hit:
+                if direction == 1:
+                    pnl_points = exit_price - entry_price
+                else:
+                    pnl_points = entry_price - exit_price
+
+                bets.append({
+                    "entry_time": entry_time,
+                    "exit_time": bar_time,
+                    "direction": "long" if direction == 1 else "short",
+                    "entry_price": entry_price,
+                    "exit_price": exit_price,
+                    "atr_at_entry": entry_atr,
+                    "pt_price": pt_price,
+                    "sl_price": sl_price,
+                    "result": "win" if won else "loss",
+                    "pnl_points": pnl_points,
+                    "pnl_atr": pnl_points / entry_atr if entry_atr > 0 else 0,
+                    "bars_held": max_bars - bars_left if not hit else (max_bars - bars_left),
+                })
+                in_trade = False
+
+                # DON'T continue — fall through to check for new entry on THIS bar
+                # This allows re-entry after exit if signal persists
+            else:
+                continue  # Still in trade, skip to next bar
+
+        # ── Check for new entry ──
+        if sig == 0 or atr_val <= 0:
+            continue
+
+        # Enter new trade
+        entry_price = bar_close
+        entry_atr = atr_val
+        entry_time = bar_time
+        direction = sig
+        bars_left = max_bars
+        in_trade = True
+
         if direction == 1:
-            pnl_points = exit_price - entry_price
+            pt_price = entry_price + pt_atr_mult * atr_val
+            sl_price = entry_price - sl_atr_mult * atr_val
         else:
-            pnl_points = entry_price - exit_price
-
-        last_exit_idx = df.index.get_loc(exit_time)
-
-        bets.append({
-            "entry_time": entry_time,
-            "exit_time": exit_time,
-            "direction": "long" if direction == 1 else "short",
-            "entry_price": entry_price,
-            "exit_price": exit_price,
-            "atr_at_entry": entry_atr,
-            "pt_price": pt_price,
-            "sl_price": sl_price,
-            "result": result,
-            "pnl_points": pnl_points,
-            "pnl_atr": pnl_points / entry_atr if entry_atr > 0 else 0,
-            "bars_held": bars_held,
-        })
+            pt_price = entry_price - pt_atr_mult * atr_val
+            sl_price = entry_price + sl_atr_mult * atr_val
 
     return pd.DataFrame(bets) if bets else pd.DataFrame()
 
 
 def compute_bet_stats(bets: pd.DataFrame, multiplier: float = 1.0, commission_rt: float = 2.10) -> dict:
-    """
-    Compute statistics for a set of bets.
-
-    Parameters
-    ----------
-    bets : pd.DataFrame from run_bets()
-    multiplier : float
-        Contract multiplier for $ PnL.
-    commission_rt : float
-        Round-trip commission per contract.
-    """
+    """Compute statistics for a set of bets."""
     if bets.empty:
         return {"n_bets": 0, "win_rate": 0, "profit_factor": 0, "ev_per_bet": 0}
 
@@ -170,10 +135,9 @@ def compute_bet_stats(bets: pd.DataFrame, multiplier: float = 1.0, commission_rt
 
     win_rate = len(wins) / n if n > 0 else 0
 
-    # Dollar PnL (1 contract)
     bets_pnl = bets["pnl_points"] * multiplier - commission_rt
-    avg_win_dollars = float((wins["pnl_points"] * multiplier - commission_rt).mean()) if len(wins) > 0 else 0
-    avg_loss_dollars = float((losses["pnl_points"] * multiplier - commission_rt).mean()) if len(losses) > 0 else 0
+    avg_win = float((wins["pnl_points"] * multiplier - commission_rt).mean()) if len(wins) > 0 else 0
+    avg_loss = float((losses["pnl_points"] * multiplier - commission_rt).mean()) if len(losses) > 0 else 0
 
     gross_profit = float(bets_pnl[bets_pnl > 0].sum()) if (bets_pnl > 0).any() else 0
     gross_loss = float(bets_pnl[bets_pnl < 0].sum()) if (bets_pnl < 0).any() else 0
@@ -182,13 +146,9 @@ def compute_bet_stats(bets: pd.DataFrame, multiplier: float = 1.0, commission_rt
     ev_per_bet = float(bets_pnl.mean())
     total_pnl = float(bets_pnl.sum())
 
-    # Time analysis
     n_days = (bets["entry_time"].iloc[-1] - bets["entry_time"].iloc[0]).days if n > 1 else 1
     n_years = max(n_days / 365, 0.1)
     bets_per_day = n / max(n_days, 1)
-    bets_per_year = n / n_years
-
-    avg_bars_held = float(bets["bars_held"].mean())
 
     return {
         "n_bets": n,
@@ -196,12 +156,12 @@ def compute_bet_stats(bets: pd.DataFrame, multiplier: float = 1.0, commission_rt
         "n_losses": len(losses),
         "win_rate": round(win_rate * 100, 1),
         "profit_factor": round(profit_factor, 2),
-        "avg_win": round(avg_win_dollars, 2),
-        "avg_loss": round(avg_loss_dollars, 2),
+        "avg_win": round(avg_win, 2),
+        "avg_loss": round(avg_loss, 2),
         "ev_per_bet": round(ev_per_bet, 2),
         "total_pnl": round(total_pnl, 2),
         "bets_per_day": round(bets_per_day, 2),
-        "bets_per_year": round(bets_per_year, 0),
-        "avg_bars_held": round(avg_bars_held, 1),
+        "bets_per_year": round(n / n_years, 0),
+        "avg_bars_held": round(float(bets["bars_held"].mean()), 1) if "bars_held" in bets else 0,
         "n_years": round(n_years, 1),
     }

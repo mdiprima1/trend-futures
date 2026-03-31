@@ -184,11 +184,13 @@ def portfolio_backtest(
     symbols = sorted(signals.keys())
     n = len(symbols)
 
-    # Find common date range
+    # Use UNION of all dates (not intersection) so sparse instruments
+    # don't shrink the backtest period. Each instrument is only traded
+    # on dates where it has data.
     all_indices = [daily_bars[s].index for s in symbols]
     common_idx = all_indices[0]
     for idx in all_indices[1:]:
-        common_idx = common_idx.intersection(idx)
+        common_idx = common_idx.union(idx)
     common_idx = common_idx.sort_values()
 
     # Estimate per-instrument volatility
@@ -197,11 +199,11 @@ def portfolio_backtest(
     inst_vol = {}  # {symbol: pd.Series of vol}
     inst_returns = {}  # {symbol: pd.Series of daily returns}
     for s in symbols:
-        bars = daily_bars[s].reindex(common_idx)
+        bars = daily_bars[s]  # Use original index, not reindexed
         inst_vol[s] = vol_fn(bars, vol_window).reindex(common_idx)
         inst_returns[s] = bars["close"].pct_change().reindex(common_idx)
 
-    returns_df = pd.DataFrame(inst_returns).dropna()
+    returns_df = pd.DataFrame(inst_returns).fillna(0)  # Fill NaN with 0 for missing instruments
 
     # Compute allocation weights
     if allocation_method == "equal_weight":
@@ -365,11 +367,10 @@ def portfolio_backtest(
 
 def _portfolio_stats(equity: pd.Series, returns: pd.Series, initial_capital: float) -> dict:
     """Compute portfolio-level statistics."""
-    daily_ret = returns.dropna()
-    # Remove leading zeros
-    first_nonzero = (daily_ret != 0).idxmax() if (daily_ret != 0).any() else daily_ret.index[0]
-    daily_ret = daily_ret.loc[first_nonzero:]
+    # Use equity-based returns (pct_change), not PnL/initial_capital
+    daily_ret = equity.pct_change().dropna()
 
+    # Use full period length for annualization (including flat days)
     n_days = len(daily_ret)
     n_years = n_days / 252
 
@@ -379,7 +380,7 @@ def _portfolio_stats(equity: pd.Series, returns: pd.Series, initial_capital: flo
     # Sharpe
     sharpe = daily_ret.mean() / daily_ret.std() * np.sqrt(252) if daily_ret.std() > 0 else 0
 
-    # CAGR
+    # CAGR — computed from equity endpoints over full period
     final = equity.iloc[-1]
     cagr = (final / initial_capital) ** (1 / n_years) - 1 if n_years > 0 and final > 0 else 0
 

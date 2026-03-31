@@ -327,10 +327,40 @@ Crisis alpha persists with the larger universe. 2023 remains the weakness.
 | Max DD | 4.4% | 7.1% |
 | Calmar | 1.298 | **1.460** |
 
+---
+
+## 2026-03-30 — Full 26-Instrument Universe
+
+### Final Data
+All 26 instruments downloaded and cached. Complete coverage: 4 Equity, 3 Fixed Income, 7 FX, 4 Energy, 4 Metals, 4 Agriculture.
+
+### Final Results (26 instruments, 2018-2025)
+
+| Config | Sharpe | CAGR | Max DD | Calmar |
+|--------|--------|------|--------|--------|
+| **HRP 15%** | **2.656** | **63.4%** | **8.4%** | **7.566** |
+| HRP 20% | 2.496 | 80.5% | 11.1% | 7.269 |
+| InvVol 15% | 1.757 | 17.5% | 7.0% | 2.487 |
+| InvVol 20% | 1.728 | 23.8% | 9.3% | 2.554 |
+| EW 15% | 0.766 | 4.6% | 5.3% | 0.867 |
+
+HRP weights concentrate 82.7% in ZT (2-Year T-Note) — the highest risk-adjusted trending instrument in the universe. This is the primary performance driver.
+
+### Important Caveat
+The Sharpe of 2.656 and CAGR of 63.4% are high because:
+1. ZT trended strongly during 2018-2025 (rate hiking → easing cycle created a clear trend)
+2. HRP found this and concentrated exposure
+3. The 15% vol target on a low-vol instrument creates significant leverage
+
+This is real performance but should not be extrapolated. The strategy is making a concentrated bet on rates trending, which happened to be the right bet in 2018-2025. A sector-constrained version would be more robust forward.
+
+### Strategy Specification Written
+Full strategy document in `docs/06-strategy-specification.md` — covers signal logic, universe, allocation, performance, risks, and implementation notes.
+
 ## Next Steps
 
-1. Complete remaining instrument downloads (RB, HO, PL, ZC, ZW, LE) for full 26-instrument universe
-2. Sector-constrained HRP (cap max sector weight at 40%) to limit concentration
-3. Cross-sectional momentum re-evaluation with 20 instruments
-4. Live paper trading validation
+1. Sector-constrained HRP (cap max sector at 40%)
+2. Walk-forward validation on 26-instrument universe
+3. Cross-sectional momentum re-evaluation
+4. Live paper trading
 5. 8-Gate evaluation

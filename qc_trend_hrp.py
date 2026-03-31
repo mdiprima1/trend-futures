@@ -27,7 +27,7 @@ class TrendFuturesHRP(QCAlgorithm):
         self.tsmom_lookback = 252
         self.atr_period = 20
         self.vol_target = 0.15
-        self.max_contracts = 200
+        self.max_contracts = 500
 
         # ── HRP Weights ──
         self.hrp_weights = {
@@ -92,6 +92,7 @@ class TrendFuturesHRP(QCAlgorithm):
 
         # ── State ──
         self._last_rebalance_week = None
+        self._debug_logged = False
 
         # ── Equity Tracking ──
         self._equity_log = []
@@ -106,17 +107,14 @@ class TrendFuturesHRP(QCAlgorithm):
         if self.is_warming_up:
             return
 
-        # Handle rollovers every day
         self._handle_rollovers()
-
-        # Record equity daily
         self._record_daily()
 
-        # Rebalance weekly (Monday only)
+        # Weekly rebalance on Monday
         current_week = f"{self.time.year}-{self.time.isocalendar()[1]}"
         if current_week == self._last_rebalance_week:
             return
-        if self.time.weekday() != 0:  # Monday = 0
+        if self.time.weekday() != 0:
             return
 
         self._last_rebalance_week = current_week
@@ -124,7 +122,6 @@ class TrendFuturesHRP(QCAlgorithm):
 
     def _rebalance(self):
         portfolio_value = self.portfolio.total_portfolio_value
-        rebal_count = 0
 
         for s, future in self.futures.items():
             key = self.symbol_keys[s]
@@ -133,18 +130,14 @@ class TrendFuturesHRP(QCAlgorithm):
                 continue
 
             self.current_contracts[s] = mapped
-
-            # Compute signal
             signal = self._compute_signal(mapped)
             weight = self.hrp_weights.get(key, 0)
 
             if signal == 0 or weight < 0.0005:
                 if self.portfolio[mapped].invested:
                     self.liquidate(mapped, tag=f"{key} FLAT")
-                    rebal_count += 1
                 continue
 
-            # Position sizing
             target_qty = self._compute_position(mapped, key, signal, weight, portfolio_value)
             if target_qty is None:
                 continue
@@ -152,11 +145,10 @@ class TrendFuturesHRP(QCAlgorithm):
             current_qty = self.portfolio[mapped].quantity
             diff = target_qty - current_qty
             if abs(diff) >= 1:
-                self.market_order(mapped, diff, tag=f"{key} {'LONG' if target_qty > 0 else 'SHORT'} {abs(target_qty)}")
-                rebal_count += 1
+                self.market_order(mapped, diff, tag=f"{key} {'L' if target_qty > 0 else 'S'}{abs(target_qty)}")
 
     def _compute_signal(self, mapped):
-        """Compute Fast+Slow blend signal for one instrument."""
+        """Fast+Slow blend: EMA(10/100) + TSMOM(252d)."""
         try:
             h = self.history(mapped, self.tsmom_lookback + 20, Resolution.DAILY)
             if h.empty or len(h) < self.ema_slow + 10:
@@ -164,19 +156,18 @@ class TrendFuturesHRP(QCAlgorithm):
 
             closes = h["close"].values
 
-            # EMA(10/100)
+            # EMA crossover
             ema_f = self._ema_val(closes, self.ema_fast)
             ema_s = self._ema_val(closes, self.ema_slow)
             ema_signal = 1 if ema_f > ema_s else -1
 
-            # TSMOM(252)
+            # TSMOM
             if len(closes) >= self.tsmom_lookback:
                 ret = closes[-1] / closes[-self.tsmom_lookback] - 1
                 tsmom_signal = 1 if ret > 0 else -1
             else:
                 tsmom_signal = 0
 
-            # Blend
             blend = (ema_signal + tsmom_signal) / 2.0
             if blend > 0:
                 return 1
@@ -188,8 +179,9 @@ class TrendFuturesHRP(QCAlgorithm):
 
     def _compute_position(self, mapped, key, signal, weight, portfolio_value):
         """
-        Compute target contracts using ATR-based risk sizing.
-        contracts = (portfolio $ * weight * vol_target / sqrt(252)) / (ATR * multiplier)
+        Vol-targeted position sizing.
+        contracts = (portfolio * weight * vol_target) / (daily_risk_per_contract * sqrt(252))
+        where daily_risk_per_contract = ATR * multiplier
         """
         try:
             h = self.history(mapped, self.atr_period + 5, Resolution.DAILY)
@@ -214,17 +206,29 @@ class TrendFuturesHRP(QCAlgorithm):
             if not mult or mult <= 0:
                 mult = 1
 
-            # Dollar risk per day per contract = ATR * multiplier
-            risk_per_contract = atr * mult
-            if risk_per_contract <= 0:
-                return None
+            # Daily dollar risk per contract
+            dollar_risk_per_contract = atr * mult
 
-            # Target daily dollar risk for this instrument
-            # = portfolio * weight * (vol_target / sqrt(252))
-            target_daily_risk = portfolio_value * weight * (self.vol_target / np.sqrt(252))
+            # Target annual dollar risk for this instrument
+            # = portfolio * weight * vol_target
+            target_annual_risk = portfolio_value * weight * self.vol_target
 
-            n = int(target_daily_risk / risk_per_contract)
-            n = min(abs(n), self.max_contracts)
+            # Target daily risk = annual / sqrt(252)
+            target_daily_risk = target_annual_risk / np.sqrt(252)
+
+            # Number of contracts
+            n = target_daily_risk / dollar_risk_per_contract
+            n = int(min(abs(n), self.max_contracts))
+
+            # Debug log first time
+            if not self._debug_logged and key == "ZT":
+                price = float(closes[-1])
+                inst_vol = (atr / price) * np.sqrt(252) if price > 0 else 0
+                self.log(f"[DEBUG] {key}: price={price:.4f}, ATR={atr:.6f}, mult={mult}, "
+                         f"inst_vol={inst_vol:.4f}, risk/contract=${dollar_risk_per_contract:.2f}, "
+                         f"target_risk=${target_daily_risk:.0f}, contracts={n}, "
+                         f"notional=${n*price*mult:,.0f}, leverage={n*price*mult/portfolio_value:.1f}x")
+                self._debug_logged = True
 
             return max(1, n) * signal if n >= 1 else 0
         except Exception:

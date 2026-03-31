@@ -82,7 +82,7 @@ class TrendFuturesHRP(QCAlgorithm):
             future = self.add_future(
                 contract,
                 resolution=Resolution.DAILY,
-                data_normalization_mode=DataNormalizationMode.BACKWARDS_RATIO,
+                data_normalization_mode=DataNormalizationMode.FORWARD_PANAMA_CANAL,
                 data_mapping_mode=DataMappingMode.OPEN_INTEREST,
                 contract_depth_offset=0,
             )
@@ -114,7 +114,9 @@ class TrendFuturesHRP(QCAlgorithm):
         current_week = f"{self.time.year}-{self.time.isocalendar()[1]}"
         if current_week == self._last_rebalance_week:
             return
-        if self.time.weekday() != 0:
+
+        # Rebalance on Monday, or any day if we've been forced (e.g., after roll)
+        if self.time.weekday() != 0 and self._last_rebalance_week is not None:
             return
 
         self._last_rebalance_week = current_week
@@ -253,7 +255,12 @@ class TrendFuturesHRP(QCAlgorithm):
                 if self.portfolio[prev].invested:
                     qty = self.portfolio[prev].quantity
                     self.liquidate(prev, tag=f"Roll out {key}")
+                    # Immediately re-enter the same position in the new contract
                     self.market_order(mapped, qty, tag=f"Roll in {key}")
+                elif key in self.hrp_weights and self.hrp_weights[key] > 0.005:
+                    # Contract changed but we had no position in old contract
+                    # Force a rebalance to enter the new contract
+                    self._last_rebalance_week = None  # Reset to trigger rebalance
             self._previous_contracts[s] = mapped
 
     def _record_daily(self):

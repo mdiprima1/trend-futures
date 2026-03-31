@@ -265,10 +265,72 @@ These are the next research priorities after universe expansion, not sprint-leve
 9. **2023-type range-bound years are structural weakness** — not fixable within trend framework
 10. **Universe expansion is the primary growth lever** — more instruments → better diversification → higher vol targets → higher CAGR
 
+---
+
+## 2026-03-30 — Universe Expansion (20 Instruments)
+
+### Objective
+Expand from 6 to 20+ instruments. Re-evaluate HRP and allocation methods with larger universe.
+
+### Universe Loaded
+20 instruments across 5 sectors: Equity (4: ES, NQ, RTY, NKD), Fixed Income (3: ZT, ZN, ZB), FX (7: 6E, 6B, 6J, 6A, 6C, 6S, 6N), Energy (2: CL, NG), Metals (3: GC, SI, HG), Agriculture (1: ZS). Six more instruments still downloading (RB, HO, PL, ZC, ZW, LE).
+
+### MAJOR FINDING: HRP Reversal
+
+| Config | Sharpe | CAGR | Max DD | Calmar |
+|--------|--------|------|--------|--------|
+| **20 inst / HRP / 15%** | **1.596** | **22.6%** | **10.8%** | **2.093** |
+| 20 inst / InvVol / 15% | 1.416 | 10.4% | 7.1% | 1.460 |
+| 6 inst / EW / 12% | 1.168 | 5.7% | 4.4% | 1.298 |
+| 20 inst / EW / 15% | 0.934 | 4.7% | 6.6% | 0.722 |
+
+**HRP now dominates** — completely reversing the Sprint 2 result where it was worst. With 20 instruments, HRP correctly identifies ZT (2-Year T-Note) as the highest risk-adjusted instrument and allocates 84% to it.
+
+This is both the strength and risk of HRP:
+- **Strength**: It finds the best risk-adjusted instrument and maximizes exposure
+- **Risk**: 84% concentration in one instrument is extreme — this is a bet on rates trending, not a diversified trend system
+
+**Equal weight is diluted**: With 20 instruments, 7 are FX pairs that don't trend well individually. Equal weighting gives them 7/20 = 35% of the portfolio, diluting alpha from the strong instruments (rates, equities, gold).
+
+### Key Insight
+The allocation method matters enormously at scale. The choice isn't HRP vs EW — it's about finding the right balance between:
+1. Concentration (HRP) — maximizes Sharpe but single-instrument risk
+2. Diversification (EW) — spreads risk but dilutes alpha
+3. Risk-aware (InvVol) — middle ground, Sharpe 1.416
+
+**Inverse-vol may be the practical winner**: Sharpe 1.416 with CAGR 10.4% and only 7.1% max DD. It naturally overweights the strong-trending, lower-vol instruments without the extreme concentration of HRP.
+
+### Regime Performance (20 inst, EW, 15%)
+
+| Regime | Sharpe | Return |
+|--------|--------|--------|
+| 2020 COVID | 2.330 | +6.2% |
+| 2025 Tariffs | 2.170 | +6.0% |
+| 2022 Rate Shock | 0.993 | +3.3% |
+| 2023 Range-Bound | -1.182 | -3.2% |
+
+Crisis alpha persists with the larger universe. 2023 remains the weakness.
+
+### Decision
+- **Production config**: Inverse-vol allocation at 15% vol target — best balance of Sharpe (1.416), CAGR (10.4%), and diversification
+- HRP is available as an aggressive variant (Sharpe 1.596 but concentrated)
+- Equal weight is the conservative variant (Sharpe 0.934 but maximum diversification)
+
+### Updated System Profile
+
+| Parameter | 6 inst (Sprint 7) | 20 inst (Expanded) |
+|-----------|-------------------|-------------------|
+| Allocation | Equal weight | **Inverse-vol** |
+| Vol target | 12% | **15%** |
+| Sharpe | 1.168 | **1.416** |
+| CAGR | 5.7% | **10.4%** |
+| Max DD | 4.4% | 7.1% |
+| Calmar | 1.298 | **1.460** |
+
 ## Next Steps
 
-1. **Universe expansion** to 20+ instruments (Phase 2 universe plan in docs/04)
-2. **Carry signal using actual roll yield** (calendar spreads, not return momentum)
-3. **HRP re-evaluation** with larger universe
-4. **Live paper trading** validation
-5. **8-Gate evaluation** when connected to QSL evaluation framework
+1. Complete remaining instrument downloads (RB, HO, PL, ZC, ZW, LE) for full 26-instrument universe
+2. Sector-constrained HRP (cap max sector weight at 40%) to limit concentration
+3. Cross-sectional momentum re-evaluation with 20 instruments
+4. Live paper trading validation
+5. 8-Gate evaluation

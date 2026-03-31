@@ -1,0 +1,284 @@
+[
+  {
+    "final_equity": "195481.16",
+    "total_return": "95.48",
+    "n_trades": "1",
+    "sharpe": "0.503",
+    "max_dd": "33.300%",
+    "strategy": "buyhold",
+    "backtest_id": "8506a1e3de2b64f7ad52becc38e8d6e8",
+    "name": "T01_SPY_BuyHold",
+    "params": {
+      "strategy": "buyhold",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "245330.15",
+    "total_return": "145.33",
+    "n_trades": "1",
+    "sharpe": "0.621",
+    "max_dd": "34.800%",
+    "strategy": "buyhold",
+    "backtest_id": "d9b9eae388ef578e4a6d97581b13ccc4",
+    "name": "T02_QQQ_BuyHold",
+    "params": {
+      "strategy": "buyhold",
+      "ticker": "QQQ"
+    }
+  },
+  {
+    "final_equity": "162342.97",
+    "total_return": "62.34",
+    "n_trades": "21",
+    "sharpe": "0.377",
+    "max_dd": "33.300%",
+    "strategy": "sma_cross",
+    "backtest_id": "66c557fb064e83abdd471c36f6824819",
+    "name": "T03_SPY_SMA",
+    "params": {
+      "strategy": "sma_cross",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "269858.44",
+    "total_return": "169.86",
+    "n_trades": "21",
+    "sharpe": "0.784",
+    "max_dd": "28.200%",
+    "strategy": "sma_cross",
+    "backtest_id": "fb38fe16f4a9dd601a41878a47660cd7",
+    "name": "T04_QQQ_SMA",
+    "params": {
+      "strategy": "sma_cross",
+      "ticker": "QQQ"
+    }
+  },
+  {
+    "final_equity": "84724.03",
+    "total_return": "-15.28",
+    "n_trades": "21",
+    "sharpe": "-0.217",
+    "max_dd": "42.600%",
+    "strategy": "sma_cross",
+    "backtest_id": "817c5e9d6152e1a5614d0859e453c170",
+    "name": "T05_IWM_SMA",
+    "params": {
+      "strategy": "sma_cross",
+      "ticker": "IWM"
+    }
+  },
+  {
+    "final_equity": "172279.24",
+    "total_return": "72.28",
+    "n_trades": "48",
+    "sharpe": "0.374",
+    "max_dd": "25.100%",
+    "strategy": "ema_cross",
+    "backtest_id": "0c9f85cb3b9d9bdc5efb2c105f342533",
+    "name": "T06_SPY_EMA",
+    "params": {
+      "strategy": "ema_cross",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "48604.28",
+    "total_return": "-51.40",
+    "n_trades": "55",
+    "sharpe": "-0.527",
+    "max_dd": "57.400%",
+    "strategy": "ema_cross",
+    "backtest_id": "2c17e1ba5af9bca3b8fa91ca66acee75",
+    "name": "T07_QQQ_EMA",
+    "params": {
+      "strategy": "ema_cross",
+      "ticker": "QQQ"
+    }
+  },
+  {
+    "final_equity": "119804.37",
+    "total_return": "19.80",
+    "n_trades": "168",
+    "sharpe": "0.097",
+    "max_dd": "39.600%",
+    "strategy": "macd",
+    "backtest_id": "90c0a8766d83507939a3f73d84c7a868",
+    "name": "T08_SPY_MACD",
+    "params": {
+      "strategy": "macd",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "89478.40",
+    "total_return": "-10.52",
+    "n_trades": "153",
+    "sharpe": "-0.163",
+    "max_dd": "26.200%",
+    "strategy": "macd",
+    "backtest_id": "be46e97dac58df1f9688450301025561",
+    "name": "T09_GLD_MACD",
+    "params": {
+      "strategy": "macd",
+      "ticker": "GLD"
+    }
+  },
+  {
+    "final_equity": "92305.86",
+    "total_return": "-7.69",
+    "n_trades": "136",
+    "sharpe": "-0.081",
+    "max_dd": "40.200%",
+    "strategy": "momentum",
+    "backtest_id": "d9c72e90e27e6f6a743786007750a7ce",
+    "name": "T10_TLT_Momentum",
+    "params": {
+      "strategy": "momentum",
+      "ticker": "TLT"
+    }
+  },
+  {
+    "final_equity": "103525.32",
+    "total_return": "3.53",
+    "n_trades": "236",
+    "sharpe": "-0.242",
+    "max_dd": "12.500%",
+    "strategy": "rsi_mr",
+    "backtest_id": "3672caed5d8cddb732f6570b6295528f",
+    "name": "T11_SPY_RSI_MR",
+    "params": {
+      "strategy": "rsi_mr",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "105079.31",
+    "total_return": "5.08",
+    "n_trades": "232",
+    "sharpe": "-0.276",
+    "max_dd": "14.800%",
+    "strategy": "rsi_mr",
+    "backtest_id": "ecd0a8f7b630585c11387fe88e63a830",
+    "name": "T12_QQQ_RSI_MR",
+    "params": {
+      "strategy": "rsi_mr",
+      "ticker": "QQQ"
+    }
+  },
+  {
+    "final_equity": "102962.30",
+    "total_return": "2.96",
+    "n_trades": "182",
+    "sharpe": "-0.254",
+    "max_dd": "12.900%",
+    "strategy": "rsi_mr",
+    "backtest_id": "fe40b5cc8fc9a4264b5027c34e6b2bd5",
+    "name": "T13_SPY_RSI_2to1",
+    "params": {
+      "strategy": "rsi_mr",
+      "ticker": "SPY",
+      "pt_mult": "2.0",
+      "max_bars": "10"
+    }
+  },
+  {
+    "final_equity": "90854.31",
+    "total_return": "-9.15",
+    "n_trades": "75",
+    "sharpe": "-1.008",
+    "max_dd": "13.100%",
+    "strategy": "boll_mr",
+    "backtest_id": "9b018cb9f8653b8507e4d9a405e46095",
+    "name": "T14_SPY_Boll_MR",
+    "params": {
+      "strategy": "boll_mr",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "96499.90",
+    "total_return": "-3.50",
+    "n_trades": "73",
+    "sharpe": "-0.928",
+    "max_dd": "8.900%",
+    "strategy": "boll_mr",
+    "backtest_id": "4f00979b8b1d5a9ded9b414cb9f7c10c",
+    "name": "T15_QQQ_Boll_MR",
+    "params": {
+      "strategy": "boll_mr",
+      "ticker": "QQQ"
+    }
+  },
+  {
+    "final_equity": "99747.35",
+    "total_return": "-0.25",
+    "n_trades": "109",
+    "sharpe": "-0.492",
+    "max_dd": "13.100%",
+    "strategy": "keltner_mr",
+    "backtest_id": "13336bbbdf70b75a57be4b05bd998c14",
+    "name": "T16_SPY_Keltner_MR",
+    "params": {
+      "strategy": "keltner_mr",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "100000.00",
+    "total_return": "0.00",
+    "n_trades": "237",
+    "sharpe": "0",
+    "max_dd": "0%",
+    "strategy": "rsi_mr",
+    "backtest_id": "c9c79ff8544924c63445487bf258b420",
+    "name": "T17_GLD_RSI_MR",
+    "params": {
+      "strategy": "rsi_mr",
+      "ticker": "GLD"
+    }
+  },
+  {
+    "final_equity": "103203.15",
+    "total_return": "3.20",
+    "n_trades": "241",
+    "sharpe": "-0.48",
+    "max_dd": "9.200%",
+    "strategy": "rsi_mr",
+    "backtest_id": "ca8381765dfbf9c18594d25c087d13e3",
+    "name": "T18_TLT_RSI_MR",
+    "params": {
+      "strategy": "rsi_mr",
+      "ticker": "TLT"
+    }
+  },
+  {
+    "final_equity": "69358.69",
+    "total_return": "-30.64",
+    "n_trades": "73",
+    "sharpe": "-0.314",
+    "max_dd": "42.200%",
+    "strategy": "momentum",
+    "backtest_id": "21772bd0740e80aae1a3a4ad55d08af7",
+    "name": "T19_SPY_Momentum",
+    "params": {
+      "strategy": "momentum",
+      "ticker": "SPY"
+    }
+  },
+  {
+    "final_equity": "58019.78",
+    "total_return": "-41.98",
+    "n_trades": "69",
+    "sharpe": "-0.309",
+    "max_dd": "62.700%",
+    "strategy": "ema_cross",
+    "backtest_id": "f71f15b0d88e31d56f3907e464581e0f",
+    "name": "T20_IWM_EMA",
+    "params": {
+      "strategy": "ema_cross",
+      "ticker": "IWM"
+    }
+  }
+]

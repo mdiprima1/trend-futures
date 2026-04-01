@@ -1,0 +1,393 @@
+{
+  "selected_strategy": {
+    "strategy": "Down5_IBS0.3_hold2",
+    "n_trades": 4096,
+    "win_rate": 54.79,
+    "avg_win_pct": 2.19,
+    "avg_loss_pct": -1.855,
+    "total_return_pct": 42.25,
+    "cagr_pct": 3.15,
+    "sharpe": 0.569,
+    "sortino": 0.795,
+    "max_dd_pct": -5.69,
+    "trades_per_year": 360.7,
+    "turnover_pct": 1803.3,
+    "n_stocks_traded": 166,
+    "sub_periods": {
+      "2014-2017": {
+        "sharpe": 0.524,
+        "return_pct": 16.33
+      },
+      "2018-2021": {
+        "sharpe": 0.571,
+        "return_pct": 9.2
+      },
+      "2022-2024": {
+        "sharpe": 0.844,
+        "return_pct": 10.8
+      }
+    },
+    "n_positive_periods": 3,
+    "sub_period_sharpes": {
+      "2014-2017": 0.524,
+      "2018-2021": 0.571,
+      "2022-2024": 0.844
+    }
+  },
+  "total_candidates": 143,
+  "total_tested": 143,
+  "viable": 10,
+  "validated": 10,
+  "top_10": [
+    {
+      "strategy": "Down5_IBS0.3_hold2",
+      "n_trades": 4096,
+      "win_rate": 54.79,
+      "avg_win_pct": 2.19,
+      "avg_loss_pct": -1.855,
+      "total_return_pct": 42.25,
+      "cagr_pct": 3.15,
+      "sharpe": 0.569,
+      "sortino": 0.795,
+      "max_dd_pct": -5.69,
+      "trades_per_year": 360.7,
+      "turnover_pct": 1803.3,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 0.524,
+          "return_pct": 16.33
+        },
+        "2018-2021": {
+          "sharpe": 0.571,
+          "return_pct": 9.2
+        },
+        "2022-2024": {
+          "sharpe": 0.844,
+          "return_pct": 10.8
+        }
+      },
+      "n_positive_periods": 3,
+      "sub_period_sharpes": {
+        "2014-2017": 0.524,
+        "2018-2021": 0.571,
+        "2022-2024": 0.844
+      }
+    },
+    {
+      "strategy": "Down5_IBS0.25_hold2",
+      "n_trades": 3709,
+      "win_rate": 54.65,
+      "avg_win_pct": 2.197,
+      "avg_loss_pct": -1.845,
+      "total_return_pct": 37.78,
+      "cagr_pct": 2.86,
+      "sharpe": 0.528,
+      "sortino": 0.762,
+      "max_dd_pct": -5.16,
+      "trades_per_year": 326.6,
+      "turnover_pct": 1632.9,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 0.464,
+          "return_pct": 14.22
+        },
+        "2018-2021": {
+          "sharpe": 0.604,
+          "return_pct": 9.07
+        },
+        "2022-2024": {
+          "sharpe": 0.827,
+          "return_pct": 9.66
+        }
+      },
+      "n_positive_periods": 3,
+      "sub_period_sharpes": {
+        "2014-2017": 0.464,
+        "2018-2021": 0.604,
+        "2022-2024": 0.827
+      }
+    },
+    {
+      "strategy": "MFI_20_hold3",
+      "n_trades": 3600,
+      "win_rate": 54.83,
+      "avg_win_pct": 2.753,
+      "avg_loss_pct": -2.835,
+      "total_return_pct": 21.47,
+      "cagr_pct": 1.73,
+      "sharpe": 0.405,
+      "sortino": 0.279,
+      "max_dd_pct": -20.4,
+      "trades_per_year": 318.1,
+      "turnover_pct": 1590.5,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 0.988,
+          "return_pct": 10.02
+        },
+        "2018-2021": {
+          "sharpe": 0.064,
+          "return_pct": 0.83
+        },
+        "2022-2024": {
+          "sharpe": 0.636,
+          "return_pct": 8.29
+        }
+      },
+      "n_positive_periods": 3,
+      "sub_period_sharpes": {
+        "2014-2017": 0.988,
+        "2018-2021": 0.064,
+        "2022-2024": 0.636
+      }
+    },
+    {
+      "strategy": "MFI_15_hold2",
+      "n_trades": 1613,
+      "win_rate": 55.49,
+      "avg_win_pct": 2.221,
+      "avg_loss_pct": -2.281,
+      "total_return_pct": 8.91,
+      "cagr_pct": 0.76,
+      "sharpe": 0.394,
+      "sortino": 0.287,
+      "max_dd_pct": -5.52,
+      "trades_per_year": 142.5,
+      "turnover_pct": 712.4,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 0.601,
+          "return_pct": 2.82
+        },
+        "2018-2021": {
+          "sharpe": 0.317,
+          "return_pct": 3.13
+        },
+        "2022-2024": {
+          "sharpe": 0.363,
+          "return_pct": 2.24
+        }
+      },
+      "n_positive_periods": 3,
+      "sub_period_sharpes": {
+        "2014-2017": 0.601,
+        "2018-2021": 0.317,
+        "2022-2024": 0.363
+      }
+    },
+    {
+      "strategy": "MFI_15_hold3",
+      "n_trades": 1397,
+      "win_rate": 56.41,
+      "avg_win_pct": 2.722,
+      "avg_loss_pct": -2.881,
+      "total_return_pct": 9.94,
+      "cagr_pct": 0.84,
+      "sharpe": 0.389,
+      "sortino": 0.216,
+      "max_dd_pct": -8.27,
+      "trades_per_year": 123.4,
+      "turnover_pct": 617.2,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 0.367,
+          "return_pct": 1.75
+        },
+        "2018-2021": {
+          "sharpe": 0.25,
+          "return_pct": 2.91
+        },
+        "2022-2024": {
+          "sharpe": 0.625,
+          "return_pct": 3.94
+        }
+      },
+      "n_positive_periods": 3,
+      "sub_period_sharpes": {
+        "2014-2017": 0.367,
+        "2018-2021": 0.25,
+        "2022-2024": 0.625
+      }
+    },
+    {
+      "strategy": "MFI_20_hold2",
+      "n_trades": 4147,
+      "win_rate": 53.34,
+      "avg_win_pct": 2.22,
+      "avg_loss_pct": -2.196,
+      "total_return_pct": 17.05,
+      "cagr_pct": 1.4,
+      "sharpe": 0.384,
+      "sortino": 0.378,
+      "max_dd_pct": -13.98,
+      "trades_per_year": 366.3,
+      "turnover_pct": 1831.5,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 0.603,
+          "return_pct": 5.51
+        },
+        "2018-2021": {
+          "sharpe": 0.085,
+          "return_pct": 1.13
+        },
+        "2022-2024": {
+          "sharpe": 0.614,
+          "return_pct": 8.78
+        }
+      },
+      "n_positive_periods": 3,
+      "sub_period_sharpes": {
+        "2014-2017": 0.603,
+        "2018-2021": 0.085,
+        "2022-2024": 0.614
+      }
+    },
+    {
+      "strategy": "Triple_IBS20_RSI3_30_SMA15",
+      "n_trades": 1639,
+      "win_rate": 53.87,
+      "avg_win_pct": 3.087,
+      "avg_loss_pct": -2.873,
+      "total_return_pct": 14.16,
+      "cagr_pct": 1.18,
+      "sharpe": 0.378,
+      "sortino": 0.259,
+      "max_dd_pct": -9.04,
+      "trades_per_year": 145.1,
+      "turnover_pct": 725.6,
+      "n_stocks_traded": 111,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": -0.196,
+          "return_pct": -0.89
+        },
+        "2018-2021": {
+          "sharpe": 0.342,
+          "return_pct": 6.21
+        },
+        "2022-2024": {
+          "sharpe": 0.87,
+          "return_pct": 8.26
+        }
+      },
+      "n_positive_periods": 2,
+      "sub_period_sharpes": {
+        "2014-2017": -0.196,
+        "2018-2021": 0.342,
+        "2022-2024": 0.87
+      }
+    },
+    {
+      "strategy": "BB-2.5_RSI3_35_hold5",
+      "n_trades": 4254,
+      "win_rate": 54.37,
+      "avg_win_pct": 3.183,
+      "avg_loss_pct": -3.254,
+      "total_return_pct": 26.4,
+      "cagr_pct": 2.1,
+      "sharpe": 0.339,
+      "sortino": 0.194,
+      "max_dd_pct": -26.72,
+      "trades_per_year": 376.9,
+      "turnover_pct": 1884.7,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 1.257,
+          "return_pct": 23.37
+        },
+        "2018-2021": {
+          "sharpe": 0.111,
+          "return_pct": 2.45
+        },
+        "2022-2024": {
+          "sharpe": -0.155,
+          "return_pct": -1.88
+        }
+      },
+      "n_positive_periods": 2,
+      "sub_period_sharpes": {
+        "2014-2017": 1.257,
+        "2018-2021": 0.111,
+        "2022-2024": -0.155
+      }
+    },
+    {
+      "strategy": "BB-2.5_RSI3_30_hold5",
+      "n_trades": 4216,
+      "win_rate": 54.44,
+      "avg_win_pct": 3.164,
+      "avg_loss_pct": -3.253,
+      "total_return_pct": 25.32,
+      "cagr_pct": 2.02,
+      "sharpe": 0.331,
+      "sortino": 0.187,
+      "max_dd_pct": -26.84,
+      "trades_per_year": 373.6,
+      "turnover_pct": 1867.8,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 1.286,
+          "return_pct": 24.09
+        },
+        "2018-2021": {
+          "sharpe": 0.059,
+          "return_pct": 0.27
+        },
+        "2022-2024": {
+          "sharpe": -0.093,
+          "return_pct": -1.18
+        }
+      },
+      "n_positive_periods": 2,
+      "sub_period_sharpes": {
+        "2014-2017": 1.286,
+        "2018-2021": 0.059,
+        "2022-2024": -0.093
+      }
+    },
+    {
+      "strategy": "BB-2.5_RSI3_40_hold5",
+      "n_trades": 4271,
+      "win_rate": 54.3,
+      "avg_win_pct": 3.177,
+      "avg_loss_pct": -3.253,
+      "total_return_pct": 25.46,
+      "cagr_pct": 2.03,
+      "sharpe": 0.329,
+      "sortino": 0.188,
+      "max_dd_pct": -26.72,
+      "trades_per_year": 378.4,
+      "turnover_pct": 1892.2,
+      "n_stocks_traded": 166,
+      "sub_periods": {
+        "2014-2017": {
+          "sharpe": 1.253,
+          "return_pct": 23.29
+        },
+        "2018-2021": {
+          "sharpe": 0.108,
+          "return_pct": 2.32
+        },
+        "2022-2024": {
+          "sharpe": -0.206,
+          "return_pct": -2.43
+        }
+      },
+      "n_positive_periods": 2,
+      "sub_period_sharpes": {
+        "2014-2017": 1.253,
+        "2018-2021": 0.108,
+        "2022-2024": -0.206
+      }
+    }
+  ]
+}

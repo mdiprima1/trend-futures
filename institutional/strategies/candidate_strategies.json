@@ -1,0 +1,1985 @@
+[
+  {
+    "name": "RSI2_5_hold1",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        5
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI2_5_hold2",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        5
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI2_5_hold3",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        5
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI2_10_hold1",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI2_10_hold2",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI2_10_hold3",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI2_15_hold1",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI2_15_hold2",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI2_15_hold3",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI2_20_hold1",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI2_20_hold2",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI2_20_hold3",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI2_25_hold1",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI2_25_hold2",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI2_25_hold3",
+    "rules": [
+      [
+        "rsi_2",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI3_5_hold1",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        5
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI3_5_hold2",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        5
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI3_5_hold3",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        5
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI3_10_hold1",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI3_10_hold2",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI3_10_hold3",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI3_15_hold1",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI3_15_hold2",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI3_15_hold3",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI3_20_hold1",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI3_20_hold2",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI3_20_hold3",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI3_25_hold1",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "RSI3_25_hold2",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "RSI3_25_hold3",
+    "rules": [
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS_0.1_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.1
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS_0.1_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.1
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS_0.15_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS_0.15_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS_0.2_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS_0.2_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS_0.25_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS_0.25_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.15_RSI3_25_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.15_RSI3_25_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.15_RSI3_25_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.15_RSI3_30_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.15_RSI3_30_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.15_RSI3_30_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.15_RSI3_35_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.15_RSI3_35_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.15_RSI3_35_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.2_RSI3_25_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.2_RSI3_25_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.2_RSI3_25_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.2_RSI3_30_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.2_RSI3_30_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.2_RSI3_30_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.2_RSI3_35_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.2_RSI3_35_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.2_RSI3_35_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.25_RSI3_25_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.25_RSI3_25_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.25_RSI3_25_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.25_RSI3_30_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.25_RSI3_30_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.25_RSI3_30_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "IBS0.25_RSI3_35_hold1",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "IBS0.25_RSI3_35_hold2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "IBS0.25_RSI3_35_hold3",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.25
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-2.0_RSI3_30_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-2.0_RSI3_30_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-2.0_RSI3_30_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-2.0_RSI3_35_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-2.0_RSI3_35_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-2.0_RSI3_35_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-2.0_RSI3_40_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-2.0_RSI3_40_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-2.0_RSI3_40_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-2.5_RSI3_30_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-2.5_RSI3_30_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-2.5_RSI3_30_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-2.5_RSI3_35_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-2.5_RSI3_35_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-2.5_RSI3_35_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-2.5_RSI3_40_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-2.5_RSI3_40_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-2.5_RSI3_40_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -2.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-3.0_RSI3_30_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-3.0_RSI3_30_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-3.0_RSI3_30_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-3.0_RSI3_35_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-3.0_RSI3_35_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-3.0_RSI3_35_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "BB-3.0_RSI3_40_hold2",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "BB-3.0_RSI3_40_hold3",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "BB-3.0_RSI3_40_hold5",
+    "rules": [
+      [
+        "bb_z_20",
+        "<",
+        -3.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 5
+  },
+  {
+    "name": "SMAdev-1.0_RSI3_30_hold2",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "SMAdev-1.0_RSI3_30_hold3",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "SMAdev-1.0_RSI3_35_hold2",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "SMAdev-1.0_RSI3_35_hold3",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "SMAdev-1.5_RSI3_30_hold2",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "SMAdev-1.5_RSI3_30_hold3",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "SMAdev-1.5_RSI3_35_hold2",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "SMAdev-1.5_RSI3_35_hold3",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.5
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "SMAdev-2.0_RSI3_30_hold2",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "SMAdev-2.0_RSI3_30_hold3",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "SMAdev-2.0_RSI3_35_hold2",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "SMAdev-2.0_RSI3_35_hold3",
+    "rules": [
+      [
+        "sma_dev_atr_20",
+        "<",
+        -2.0
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "WR_-90_hold1",
+    "rules": [
+      [
+        "williams_r",
+        "<",
+        -90
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "WR_-90_hold2",
+    "rules": [
+      [
+        "williams_r",
+        "<",
+        -90
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "WR_-95_hold1",
+    "rules": [
+      [
+        "williams_r",
+        "<",
+        -95
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "WR_-95_hold2",
+    "rules": [
+      [
+        "williams_r",
+        "<",
+        -95
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Stoch_10_hold1",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "Stoch_10_hold2",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Stoch_10_hold3",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        10
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "Stoch_15_hold1",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "Stoch_15_hold2",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Stoch_15_hold3",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "Stoch_20_hold1",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 1
+  },
+  {
+    "name": "Stoch_20_hold2",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Stoch_20_hold3",
+    "rules": [
+      [
+        "stoch_k",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "CCI_-200_hold2",
+    "rules": [
+      [
+        "cci_20",
+        "<",
+        -200
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "CCI_-200_hold3",
+    "rules": [
+      [
+        "cci_20",
+        "<",
+        -200
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "CCI_-150_hold2",
+    "rules": [
+      [
+        "cci_20",
+        "<",
+        -150
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "CCI_-150_hold3",
+    "rules": [
+      [
+        "cci_20",
+        "<",
+        -150
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "CCI_-100_hold2",
+    "rules": [
+      [
+        "cci_20",
+        "<",
+        -100
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "CCI_-100_hold3",
+    "rules": [
+      [
+        "cci_20",
+        "<",
+        -100
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "Down3_IBS0.25_hold2",
+    "rules": [
+      [
+        "down_days",
+        ">=",
+        3
+      ],
+      [
+        "ibs",
+        "<",
+        0.25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Down3_IBS0.3_hold2",
+    "rules": [
+      [
+        "down_days",
+        ">=",
+        3
+      ],
+      [
+        "ibs",
+        "<",
+        0.3
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Down4_IBS0.25_hold2",
+    "rules": [
+      [
+        "down_days",
+        ">=",
+        4
+      ],
+      [
+        "ibs",
+        "<",
+        0.25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Down4_IBS0.3_hold2",
+    "rules": [
+      [
+        "down_days",
+        ">=",
+        4
+      ],
+      [
+        "ibs",
+        "<",
+        0.3
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Down5_IBS0.25_hold2",
+    "rules": [
+      [
+        "down_days",
+        ">=",
+        5
+      ],
+      [
+        "ibs",
+        "<",
+        0.25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Down5_IBS0.3_hold2",
+    "rules": [
+      [
+        "down_days",
+        ">=",
+        5
+      ],
+      [
+        "ibs",
+        "<",
+        0.3
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "MFI_15_hold2",
+    "rules": [
+      [
+        "mfi_14",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "MFI_15_hold3",
+    "rules": [
+      [
+        "mfi_14",
+        "<",
+        15
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "MFI_20_hold2",
+    "rules": [
+      [
+        "mfi_14",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "MFI_20_hold3",
+    "rules": [
+      [
+        "mfi_14",
+        "<",
+        20
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "MFI_25_hold2",
+    "rules": [
+      [
+        "mfi_14",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "MFI_25_hold3",
+    "rules": [
+      [
+        "mfi_14",
+        "<",
+        25
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI14_20_RSI3_35_hold3",
+    "rules": [
+      [
+        "rsi_14",
+        "<",
+        20
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI14_20_RSI3_40_hold3",
+    "rules": [
+      [
+        "rsi_14",
+        "<",
+        20
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI14_25_RSI3_35_hold3",
+    "rules": [
+      [
+        "rsi_14",
+        "<",
+        25
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI14_25_RSI3_40_hold3",
+    "rules": [
+      [
+        "rsi_14",
+        "<",
+        25
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI14_30_RSI3_35_hold3",
+    "rules": [
+      [
+        "rsi_14",
+        "<",
+        30
+      ],
+      [
+        "rsi_3",
+        "<",
+        35
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "RSI14_30_RSI3_40_hold3",
+    "rules": [
+      [
+        "rsi_14",
+        "<",
+        30
+      ],
+      [
+        "rsi_3",
+        "<",
+        40
+      ]
+    ],
+    "hold_days": 3
+  },
+  {
+    "name": "Triple_IBS15_RSI3_25_BB2",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.15
+      ],
+      [
+        "rsi_3",
+        "<",
+        25
+      ],
+      [
+        "bb_z_20",
+        "<",
+        -2.0
+      ]
+    ],
+    "hold_days": 2
+  },
+  {
+    "name": "Triple_IBS20_RSI3_30_SMA15",
+    "rules": [
+      [
+        "ibs",
+        "<",
+        0.2
+      ],
+      [
+        "rsi_3",
+        "<",
+        30
+      ],
+      [
+        "sma_dev_atr_20",
+        "<",
+        -1.5
+      ]
+    ],
+    "hold_days": 2
+  }
+]

@@ -70,16 +70,18 @@ class CasinoV3NoOverlap(QCAlgorithm):
         t = self.time.strftime("%Y%m%d")
         if t != self._led: self._eql.append(f"{t}:{eq:.0f}"); self._led = t
 
-        # Flatten at 15:00
-        if self.time.hour >= 15:
-            for key in list(self._active.keys()):
-                mapped = self._get_mapped(key)
-                if mapped and self.portfolio[mapped].invested:
-                    self.liquidate(mapped, tag=f"EOD {key}")
-                self._active.pop(key, None)
+        # Only process bars 10:00-13:00 — ignore everything else
+        if self.time.hour < 10 or self.time.hour > 13:
+            # Flatten active positions at 14:00+
+            if self.time.hour >= 14:
+                for key in list(self._active.keys()):
+                    mapped = self._get_mapped(key)
+                    if mapped and self.portfolio[mapped].invested:
+                        self.liquidate(mapped, tag=f"EOD {key}")
+                    self._active.pop(key, None)
             return
 
-        # Process each instrument
+        # Process each instrument (10:00-13:00 only)
         for cs in self.instruments:
             key = self.instruments[cs]
             mapped = self.securities[cs].mapped
@@ -149,20 +151,20 @@ class CasinoV3NoOverlap(QCAlgorithm):
 
     def _get_signal(self, key, closes, highs, lows, price):
         if key in ("ES", "NQ"):
-            # RSI(3) 30/70
+            # RSI(3) 25/75 — tighter than 30/70 to reduce over-trading
             d = np.diff(closes)
             g = np.where(d > 0, d, 0); l = np.where(d < 0, -d, 0)
             ag = np.mean(g[-3:]); al = np.mean(l[-3:])
             rsi = 100 - (100/(1+ag/al)) if al > 0 else 100
-            if rsi < 30: return 1
-            if rsi > 70: return -1
+            if rsi < 25: return 1
+            if rsi > 75: return -1
         elif key == "CL":
-            # IBS(0.15/0.85)
+            # IBS(0.10/0.90) — tighter to reduce over-trading
             rng = highs[-1] - lows[-1]
             if rng > 0:
                 ibs = (closes[-1] - lows[-1]) / rng
-                if ibs < 0.15: return 1
-                if ibs > 0.85: return -1
+                if ibs < 0.10: return 1
+                if ibs > 0.90: return -1
         return 0
 
     def _get_mapped(self, key):

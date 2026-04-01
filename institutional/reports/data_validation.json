@@ -1,0 +1,18 @@
+{
+  "n_stocks": 166,
+  "date_range": {
+    "common_start": "2019-03-20",
+    "common_end": "2024-12-31",
+    "total_trading_days": 1510
+  },
+  "missing_data": {},
+  "zero_volume_days": {},
+  "price_gaps": {},
+  "issues": [],
+  "summary": {
+    "stocks_with_missing": 0,
+    "stocks_with_zero_vol": 0,
+    "stocks_with_gaps": 0,
+    "total_issues": 0
+  }
+}

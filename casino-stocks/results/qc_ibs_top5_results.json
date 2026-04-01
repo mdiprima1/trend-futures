@@ -1,0 +1,42 @@
+{
+  "backtest_id": "007bab689831e9be70df3784f58def88",
+  "statistics": {
+    "Total Orders": "36",
+    "Average Win": "0.17%",
+    "Average Loss": "-0.14%",
+    "Compounding Annual Return": "-4.116%",
+    "Drawdown": "0.600%",
+    "Expectancy": "-0.184",
+    "Start Equity": "100000",
+    "End Equity": "99666.59",
+    "Net Profit": "-0.333%",
+    "Sharpe Ratio": "-2.199",
+    "Sortino Ratio": "-2.408",
+    "Probabilistic Sharpe Ratio": "21.763%",
+    "Loss Rate": "62%",
+    "Win Rate": "38%",
+    "Profit-Loss Ratio": "1.18",
+    "Alpha": "-0.017",
+    "Beta": "-0.042",
+    "Annual Standard Deviation": "0.022",
+    "Annual Variance": "0.001",
+    "Information Ratio": "-11.191",
+    "Tracking Error": "0.073",
+    "Treynor Ratio": "1.184",
+    "Total Fees": "$36.60",
+    "Estimated Strategy Capacity": "$74000000.00",
+    "Lowest Capacity Asset": "NUE R735QTJ8XC9X",
+    "Portfolio Turnover": "12.09%",
+    "Drawdown Recovery": "6"
+  },
+  "runtime_stats": {
+    "Equity": "$99,666.59",
+    "Fees": "-$36.60",
+    "Holdings": "$29,658.35",
+    "Net Profit": "$-422.37",
+    "Probabilistic Sharpe Ratio": "21.763%",
+    "Return": "-0.33 %",
+    "Unrealized": "$85.85",
+    "Volume": "$350,312.73"
+  }
+}
